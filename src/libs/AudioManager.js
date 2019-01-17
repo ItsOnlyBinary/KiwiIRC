@@ -33,12 +33,7 @@ export class AudioManager {
                 return;
             }
 
-            let ignoreTypes = [
-                'connection',
-                'traffic',
-                'mode',
-                'nick',
-            ];
+            let ignoreTypes = ['connection', 'traffic', 'mode', 'nick'];
             if (ignoreTypes.indexOf(message.type) > -1) {
                 return;
             }

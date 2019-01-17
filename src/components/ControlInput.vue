@@ -1,13 +1,13 @@
 <template>
     <div class="kiwi-controlinput kiwi-theme-bg">
         <div
-            :class="{'kiwi-controlinput-selfuser--open': selfuser_open}"
+            :class="{ 'kiwi-controlinput-selfuser--open': selfuser_open }"
             class="kiwi-controlinput-selfuser"
         >
             <self-user
-                v-if="selfuser_open && networkState==='connected'"
+                v-if="selfuser_open && networkState === 'connected'"
                 :network="buffer.getNetwork()"
-                @close="selfuser_open=false"
+                @close="selfuser_open = false"
             />
         </div>
 
@@ -44,40 +44,44 @@
                         @input="inputUpdate"
                         @keydown="inputKeyDown($event)"
                         @keyup="inputKeyUp($event)"
-                        @click="closeInputTool"/>
+                        @click="closeInputTool"
+                    />
                 </div>
                 <button
                     v-if="shouldShowSendButton"
                     type="submit"
-                    class="kiwi-controlinput-send fa fa-paper-plane" />
+                    class="kiwi-controlinput-send fa fa-paper-plane"
+                />
             </form>
 
             <div ref="plugins" class="kiwi-controlinput-tools">
                 <div
-                    :class="{'kiwi-controlinput-tools-container-expand--inverse': !showPlugins}"
+                    :class="{
+                        'kiwi-controlinput-tools-container-expand--inverse': !showPlugins,
+                    }"
                     class="kiwi-controlinput-tools-container-expand"
-                    @click="showPlugins=!showPlugins"
+                    @click="showPlugins = !showPlugins"
                 >
                     <i class="fa fa-bars" aria-hidden="true" />
                 </div>
                 <transition name="kiwi-plugin-ui-trans">
                     <div v-if="showPlugins" class="kiwi-controlinput-tools-container">
                         <a class="kiwi-controlinput-tool" @click.prevent="onToolClickTextStyle">
-                            <i class="fa fa-adjust" aria-hidden="true"/>
+                            <i class="fa fa-adjust" aria-hidden="true" />
                         </a>
                         <a
                             v-if="shouldShowEmojiPicker"
                             class="kiwi-controlinput-tool"
                             @click.prevent="onToolClickEmoji"
                         >
-                            <i class="fa fa-smile-o" aria-hidden="true"/>
+                            <i class="fa fa-smile-o" aria-hidden="true" />
                         </a>
                         <div
                             v-rawElement="{
                                 el: plugin.el,
                                 props: {
                                     controlinput: self,
-                                }
+                                },
                             }"
                             v-for="plugin in pluginUiElements"
                             :key="plugin.id"
@@ -89,7 +93,7 @@
         </div>
 
         <div class="kiwi-controlinput-active-tool">
-            <component :is="active_tool" v-bind="active_tool_props"/>
+            <component :is="active_tool" v-bind="active_tool_props" />
         </div>
     </div>
 </template>
@@ -139,15 +143,11 @@ export default {
     computed: {
         currentNick() {
             let activeNetwork = state.getActiveNetwork();
-            return activeNetwork ?
-                activeNetwork.nick :
-                '';
+            return activeNetwork ? activeNetwork.nick : '';
         },
         networkState() {
             let activeNetwork = state.getActiveNetwork();
-            return activeNetwork ?
-                activeNetwork.state :
-                '';
+            return activeNetwork ? activeNetwork.state : '';
         },
         shouldShowSendButton() {
             return this.$state.ui.is_touch || this.$state.setting('showSendButton');
@@ -170,7 +170,7 @@ export default {
         },
     },
     created() {
-        this.listen(state, 'document.keydown', (ev) => {
+        this.listen(state, 'document.keydown', ev => {
             // No input box currently? Nothing to shift focus to
             if (!this.$refs.input) {
                 return;
@@ -206,7 +206,7 @@ export default {
             this.$refs.input.focus();
         });
 
-        this.listen(this.$state, 'input.insertnick', (nick) => {
+        this.listen(this.$state, 'input.insertnick', nick => {
             if (!this.$refs.input) {
                 return;
             }
@@ -221,7 +221,7 @@ export default {
             this.$refs.input.insertText(val);
         });
 
-        this.listen(this.$state, 'input.tool', (toolComponent) => {
+        this.listen(this.$state, 'input.tool', toolComponent => {
             this.toggleInputTool(toolComponent);
         });
     },
@@ -241,9 +241,9 @@ export default {
             this.maybeHidePlugins();
         },
         inputRestore() {
-            let currentInput = state.setting('buffers.shared_input') ?
-                state.ui.current_input :
-                this.buffer.current_input;
+            let currentInput = state.setting('buffers.shared_input')
+                ? state.ui.current_input
+                : this.buffer.current_input;
 
             this.$refs.input.reset(currentInput);
             this.$refs.input.selectionToEnd();
@@ -352,11 +352,11 @@ export default {
                     this.$refs.input.selectionToEnd();
                 });
             } else if (
-                event.keyCode === 9
-                && !event.shiftKey
-                && !event.altKey
-                && !event.metaKey
-                && !event.ctrlKey
+                event.keyCode === 9 &&
+                !event.shiftKey &&
+                !event.altKey &&
+                !event.metaKey &&
+                !event.ctrlKey
             ) {
                 // Tab and no other keys as tab+other is often a keyboard shortcut
                 // Tab key was just pressed, start general auto completion
@@ -421,11 +421,11 @@ export default {
                 this.openAutoComplete(this.buildAutoCompleteItems({ buffers: true }));
                 this.autocomplete_filtering = true;
             } else if (
-                event.keyCode === 9
-                && !event.shiftKey
-                && !event.altKey
-                && !event.metaKey
-                && !event.ctrlKey
+                event.keyCode === 9 &&
+                !event.shiftKey &&
+                !event.altKey &&
+                !event.metaKey &&
+                !event.ctrlKey
             ) {
                 // Tab and no other keys as tab+other is often a keyboard shortcut
                 event.preventDefault();
@@ -474,7 +474,7 @@ export default {
             let list = [];
 
             if (opts.users) {
-                let userList = _.values(this.buffer.users).map((user) => {
+                let userList = _.values(this.buffer.users).map(user => {
                     let item = {
                         text: user.nick,
                         type: 'user',
@@ -494,7 +494,7 @@ export default {
 
             if (opts.buffers) {
                 let bufferList = [];
-                this.buffer.getNetwork().buffers.forEach((buffer) => {
+                this.buffer.getNetwork().buffers.forEach(buffer => {
                     if (buffer.isChannel()) {
                         bufferList.push({
                             text: buffer.name,
@@ -508,11 +508,11 @@ export default {
 
             if (opts.commands) {
                 let commandList = [];
-                autocompleteCommands.forEach((command) => {
+                autocompleteCommands.forEach(command => {
                     // allow descriptions to be translation keys or static strings
-                    let desc = command.description.startsWith('locale_id_') ?
-                        TextFormatting.t(command.description.substr(10)) :
-                        command.description;
+                    let desc = command.description.startsWith('locale_id_')
+                        ? TextFormatting.t(command.description.substr(10))
+                        : command.description;
                     commandList.push({
                         text: '/' + command.command,
                         description: desc,
@@ -532,7 +532,6 @@ export default {
 </script>
 
 <style lang="less">
-
 .kiwi-controlinput {
     z-index: 999;
 }
@@ -680,5 +679,4 @@ export default {
 .kiwi-plugin-ui-trans-leave-active {
     transition: right 0.2s;
 }
-
 </style>

@@ -3,42 +3,43 @@
         :class="[
             'u-input-text',
             hasFocus ? 'u-input-text--focus' : '',
-            hasFocus || currentValue ? 'u-input-text--reveal-value' : ''
+            hasFocus || currentValue ? 'u-input-text--reveal-value' : '',
         ]"
     >
-
         <span class="u-input-text-label">{{ label }}</span>
 
         <input
-            v-if="type==='password'"
+            v-if="type === 'password'"
             v-model="currentValue"
             type="password"
             autocomplete="off"
             autocorrect="off"
-            autocapitalize="off" spellcheck="false" @focus="hasFocus=true" @blur="hasFocus=false"
-        >
+            autocapitalize="off"
+            spellcheck="false"
+            @focus="hasFocus = true"
+            @blur="hasFocus = false"
+        />
         <input
-            v-else-if="type==='number'"
+            v-else-if="type === 'number'"
             v-model="currentValue"
             type="number"
-            @focus="hasFocus=true"
-            @blur="hasFocus=false"
-        >
+            @focus="hasFocus = true"
+            @blur="hasFocus = false"
+        />
         <input
             v-else
             v-model="currentValue"
             autocomplete="off"
             autocorrect="off"
-            autocapitalize="off" spellcheck="false" @focus="hasFocus=true" @blur="hasFocus=false"
-        >
+            autocapitalize="off"
+            spellcheck="false"
+            @focus="hasFocus = true"
+            @blur="hasFocus = false"
+        />
 
-        <div v-if="$slots.default" class="u-input-text-c">
-            <slot/>
-        </div>
+        <div v-if="$slots.default" class="u-input-text-c"><slot /></div>
 
-        <div class="u-input-text-underline">
-            <div class="u-input-text-underline-active"/>
-        </div>
+        <div class="u-input-text-underline"><div class="u-input-text-underline-active" /></div>
     </div>
 </template>
 
@@ -73,7 +74,6 @@ export default Vue.component('input-text', {
 </script>
 
 <style>
-
 .u-input-text {
     position: relative;
     padding-top: 1.2em;
@@ -135,11 +135,10 @@ export default Vue.component('input-text', {
     -moz-appearance: textfield;
 }
 
-.u-input-text input[type=number]::-webkit-inner-spin-button,
-.u-input-text input[type=number]::-webkit-outer-spin-button {
+.u-input-text input[type='number']::-webkit-inner-spin-button,
+.u-input-text input[type='number']::-webkit-outer-spin-button {
     /* For webkit browsers like Safari and Chrome */
     -webkit-appearance: none;
     margin: 0;
 }
-
 </style>

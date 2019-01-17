@@ -11,11 +11,9 @@
 export default {
     props: ['error'],
 };
-
 </script>
 
 <style>
-
 .kiwi-wrap-error {
     height: 100%;
     overflow: hidden;
@@ -31,5 +29,4 @@ export default {
     display: inline-block;
     text-align: left;
 }
-
 </style>

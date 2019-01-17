@@ -5,15 +5,13 @@
         <p>{{ $t('personal_addjoin') }}</p>
         <p>{{ $t('personal_return') }}</p>
 
-        <button
-            class="u-button u-button-primary"
-            @click="addNetwork"
-        >
+        <button class="u-button u-button-primary" @click="addNetwork">
             {{ $t('personal_add') }}
-        </button> <br >
+        </button>
+        <br />
 
         <a
-            v-if="networks.length>0"
+            v-if="networks.length > 0"
             class="u-link kiwi-personal-existing-networks"
             @click.stop="toggleStateBrowser"
         >
@@ -21,22 +19,17 @@
         </a>
 
         <div
-            :class="{'kiwi-aboutnew-content--open': about_open}"
+            :class="{ 'kiwi-aboutnew-content--open': about_open }"
             class="kiwi-aboutnew-content"
             v-html="aboutContent"
         />
         <div class="kiwi-aboutnew">
-            <div class="kiwi-aboutnew-sep"/>
-            <a
-                class="u-link"
-                @click="about_open=!about_open"
-            >
-                Link to your network / channel
-            </a>
+            <div class="kiwi-aboutnew-sep" />
+            <a class="u-link" @click="about_open = !about_open"> Link to your network / channel </a>
 
             <div class="kiwi-aboutnew-help">
-                <a @click="about_open=!about_open">
-                    <i class="fa fa-question-circle" aria-hidden="true"/>
+                <a @click="about_open = !about_open">
+                    <i class="fa fa-question-circle" aria-hidden="true" />
                 </a>
             </div>
         </div>
@@ -95,7 +88,6 @@ state.getStartups().kiwiirccom = ctor;
 </script>
 
 <style>
-
 .kiwi-aboutnew {
     position: absolute;
     bottom: 0;
@@ -180,5 +172,4 @@ state.getStartups().kiwiirccom = ctor;
         display: inherit;
     }
 }
-
 </style>

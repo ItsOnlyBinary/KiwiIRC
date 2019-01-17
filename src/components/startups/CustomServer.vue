@@ -1,11 +1,11 @@
 <template>
     <div :class="[is_connecting ? 'kiwi-customserver--connecting' : '']" class="kiwi-customserver">
         <div class="kiwi-customserver-container">
-            <h2 v-if="!is_connecting" v-html="title"/>
+            <h2 v-if="!is_connecting" v-html="title" />
             <h2 v-else>
                 {{ $t('connecting') }}
                 <a class="u-link" @click="infoClick">
-                    <i class="fa fa-info-circle" aria-hidden="true"/>
+                    <i class="fa fa-info-circle" aria-hidden="true" />
                 </a>
             </h2>
 
@@ -25,9 +25,9 @@
                             <span
                                 :class="[tls ? 'kiwi-customserver-tls--enabled' : '']"
                                 class="fa-stack fa-lg kiwi-customserver-tls"
-                                @click="tls=!tls"
+                                @click="tls = !tls"
                             >
-                                <i class="fa fa-lock fa-stack-1x kiwi-customserver-tls-lock"/>
+                                <i class="fa fa-lock fa-stack-1x kiwi-customserver-tls-lock" />
                                 <i
                                     v-if="!tls"
                                     class="fa fa-times fa-stack-1x kiwi-customserver-tls-minus"
@@ -42,7 +42,7 @@
                         />
 
                         <label class="kiwi-customserver-have-password">
-                            <input v-model="show_password_box" type="checkbox">
+                            <input v-model="show_password_box" type="checkbox" />
                             <span> {{ $t('password_have') }} </span>
                         </label>
                         <input-text
@@ -64,7 +64,7 @@
                         />
 
                         <label class="kiwi-customserver-have-password">
-                            <input v-model="show_password_box" type="checkbox">
+                            <input v-model="show_password_box" type="checkbox" />
                             <span>{{ $t('password_have') }}</span>
                         </label>
                         <input-text
@@ -87,9 +87,9 @@
                             <span
                                 :class="[tls ? 'kiwi-customserver-tls--enabled' : '']"
                                 class="fa-stack fa-lg kiwi-customserver-tls"
-                                @click="tls=!tls"
+                                @click="tls = !tls"
                             >
-                                <i class="fa fa-lock fa-stack-1x kiwi-customserver-tls-lock"/>
+                                <i class="fa fa-lock fa-stack-1x kiwi-customserver-tls-lock" />
                                 <i
                                     v-if="!tls"
                                     class="fa fa-times fa-stack-1x kiwi-customserver-tls-minus"
@@ -122,7 +122,7 @@
                 </form>
 
                 <div v-else class="kiwi-customserver-loader">
-                    <i class="fa fa-spin fa-spinner" aria-hidden="true"/>
+                    <i class="fa fa-spin fa-spinner" aria-hidden="true" />
                 </div>
             </transition>
         </div>
@@ -222,7 +222,7 @@ export default {
                         password: con.password || '',
                     });
 
-                    con.channels.forEach((channelName) => {
+                    con.channels.forEach(channelName => {
                         let buffer = state.addBuffer(net.id, channelName);
                         buffer.enabled = true;
                     });
@@ -320,13 +320,17 @@ export default {
                 net.ircClient.connect();
 
                 let onRegistered = () => {
-                    setTimeout(() => { this.is_connecting = false; }, 1000);
+                    setTimeout(() => {
+                        this.is_connecting = false;
+                    }, 1000);
                     this.$emit('start');
                     net.ircClient.off('registered', onRegistered);
                     net.ircClient.off('close', onClosed);
                 };
                 let onClosed = () => {
-                    setTimeout(() => { this.is_connecting = false; }, 1000);
+                    setTimeout(() => {
+                        this.is_connecting = false;
+                    }, 1000);
                     net.ircClient.off('registered', onRegistered);
                     net.ircClient.off('close', onClosed);
                 };
@@ -367,7 +371,6 @@ export default {
 </script>
 
 <style>
-
 .kiwi-customserver {
     height: 100%;
     overflow-y: auto;
@@ -512,5 +515,4 @@ export default {
 .kiwi-connectingloader-leave-to {
     max-height: 0;
 }
-
 </style>

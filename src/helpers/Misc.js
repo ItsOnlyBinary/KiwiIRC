@@ -35,9 +35,7 @@ export function extractBuffers(str) {
     return buffers;
 }
 
-export function splitHost(uri) {
-
-}
+export function splitHost(uri) {}
 
 /**
  * Does a string mention a nickname?
@@ -117,7 +115,7 @@ export function networkErrorMessage(err) {
 export function parseIrcUri(str) {
     let reg = /(?:(ircs?):\/\/)?([a-z.0-9-]+)(?::(?:(\+)?([0-9]+)))?(?:\/([^?]*))?(?:\?(.*))?/;
     let connections = [];
-    str.split(';').forEach((connectionString) => {
+    str.split(';').forEach(connectionString => {
         if (!connectionString) {
             return;
         }
@@ -130,23 +128,20 @@ export function parseIrcUri(str) {
 
         let tls = m[1] === 'ircs' || !!m[3];
         let params = Object.create(null);
-        (m[6] || '').split('&').forEach((p) => {
+        (m[6] || '').split('&').forEach(p => {
             let parts = p.split('=');
             if (parts.length === 2) {
                 params[parts[0].toLowerCase()] = parts[1];
             }
         });
 
-        let channels = (m[5] || params.channel || '');
+        let channels = m[5] || params.channel || '';
         channels = _(channels.split(','))
             .compact()
-            .map((_channelName) => {
-                let hasPrefix = _channelName[0] === '#' ||
-                    _channelName[0] === '&';
+            .map(_channelName => {
+                let hasPrefix = _channelName[0] === '#' || _channelName[0] === '&';
 
-                let channelName = hasPrefix ?
-                    _channelName :
-                    '#' + _channelName;
+                let channelName = hasPrefix ? _channelName : '#' + _channelName;
 
                 return channelName;
             });
@@ -157,7 +152,7 @@ export function parseIrcUri(str) {
             port: parseInt(m[4] || (tls ? 6697 : 6667), 10),
             channels: channels,
             nick: params.nick || '',
-            encoding: (params.encoding || 'utf8'),
+            encoding: params.encoding || 'utf8',
             params: params,
         });
     });
@@ -200,7 +195,9 @@ export function dedotObject(confObj, _place) {
  */
 export function replaceObjectProps(target, source) {
     Object.keys(target).forEach(prop => delete target[prop]);
-    Object.keys(source).forEach((prop) => { target[prop] = source[prop]; });
+    Object.keys(source).forEach(prop => {
+        target[prop] = source[prop];
+    });
 }
 
 /**

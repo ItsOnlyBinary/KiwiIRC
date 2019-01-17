@@ -25,7 +25,7 @@ export default Vue.extend({
         },
     },
     created() {
-        this.listen(this.$state, 'sidebar.component', (component) => {
+        this.listen(this.$state, 'sidebar.component', component => {
             this.activeComponent = component;
         });
 
@@ -87,21 +87,14 @@ export default Vue.extend({
             this.sidebarSection = 'about';
         },
         toggleNicklist() {
-            this.sidebarSection === 'nicklist' ?
-                this.close() :
-                this.showNicklist();
+            this.sidebarSection === 'nicklist' ? this.close() : this.showNicklist();
         },
         toggleBufferSettings() {
-            this.sidebarSection === 'settings' ?
-                this.close() :
-                this.showBufferSettings();
+            this.sidebarSection === 'settings' ? this.close() : this.showBufferSettings();
         },
         toggleAbout() {
-            this.sidebarSection === 'about' ?
-                this.close() :
-                this.showAbout();
+            this.sidebarSection === 'about' ? this.close() : this.showAbout();
         },
     },
 });
-
 </script>

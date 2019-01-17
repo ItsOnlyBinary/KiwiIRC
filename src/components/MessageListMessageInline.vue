@@ -2,48 +2,39 @@
     <div
         :class="[
             'kiwi-messagelist-message-' + message.type,
-            message.type_extra ?
-                'kiwi-messagelist-message-' + message.type + '-' + message.type_extra :
-                '',
-            ml.isMessageHighlight(message) ?
-                'kiwi-messagelist-message--highlight' :
-                '',
-            ml.isHoveringOverMessage(message) ?
-                'kiwi-messagelist-message--hover' :
-                '',
-            ml.buffer.last_read && message.time > ml.buffer.last_read ?
-                'kiwi-messagelist-message--unread' :
-                '',
-            message.nick.toLowerCase() === ml.ourNick.toLowerCase() ?
-                'kiwi-messagelist-message--own' :
-                '',
-            ml.message_info_open === message ?
-                'kiwi-messagelist-message--info-open' :
-                '',
-            ml.message_info_open && ml.message_info_open !== message ?
-                'kiwi-messagelist-message--blur' :
-                '',
+            message.type_extra
+                ? 'kiwi-messagelist-message-' + message.type + '-' + message.type_extra
+                : '',
+            ml.isMessageHighlight(message) ? 'kiwi-messagelist-message--highlight' : '',
+            ml.isHoveringOverMessage(message) ? 'kiwi-messagelist-message--hover' : '',
+            ml.buffer.last_read && message.time > ml.buffer.last_read
+                ? 'kiwi-messagelist-message--unread'
+                : '',
+            message.nick.toLowerCase() === ml.ourNick.toLowerCase()
+                ? 'kiwi-messagelist-message--own'
+                : '',
+            ml.message_info_open === message ? 'kiwi-messagelist-message--info-open' : '',
+            ml.message_info_open && ml.message_info_open !== message
+                ? 'kiwi-messagelist-message--blur'
+                : '',
         ]"
         :data-message-id="message.id"
-        :data-nick="(message.nick||'').toLowerCase()"
+        :data-nick="(message.nick || '').toLowerCase()"
         class="kiwi-messagelist-message kiwi-messagelist-message--text"
         @click="ml.onMessageClick($event, message, true)"
         @dblclick="ml.onMessageDblClick($event, message)"
     >
         <div>
-            <span
-                v-if="ml.bufferSetting('show_timestamps')"
-                class="kiwi-messagelist-time"
-            >
+            <span v-if="ml.bufferSetting('show_timestamps')" class="kiwi-messagelist-time">
                 {{ ml.formatTime(message.time) }}
             </span>
             <span
-                :style="{ 'color': userColour }"
+                :style="{ color: userColour }"
                 :data-nick="message.nick"
                 class="kiwi-messagelist-nick"
                 @click="ml.openUserBox(message.nick)"
-                @mouseover="ml.hover_nick=message.nick.toLowerCase();"
-                @mouseout="ml.hover_nick='';"
+                @mouseover="ml.hover_nick = message.nick.toLowerCase()"
+                @mouseout="ml.hover_nick = ''"
             >
                 {{ displayNick }}
             </span>
@@ -52,11 +43,11 @@
                 v-if="message.bodyTemplate && message.bodyTemplate.$el"
                 class="kiwi-messagelist-body"
             />
-            <div v-else class="kiwi-messagelist-body" v-html="ml.formatMessage(message)"/>
+            <div v-else class="kiwi-messagelist-body" v-html="ml.formatMessage(message)" />
         </div>
 
         <message-info
-            v-if="ml.message_info_open===message"
+            v-if="ml.message_info_open === message"
             :message="message"
             :buffer="ml.buffer"
             @close="ml.toggleMessageInfo()"
@@ -65,7 +56,6 @@
 </template>
 
 <script>
-
 import MessageInfo from './MessageInfo';
 
 export default {
@@ -74,17 +64,13 @@ export default {
     },
     props: ['ml', 'message', 'idx'],
     data() {
-        return { };
+        return {};
     },
     computed: {
         displayNick() {
-            let prefix = this.message.user ?
-                this.userModePrefix(this.message.user) :
-                '';
+            let prefix = this.message.user ? this.userModePrefix(this.message.user) : '';
 
-            let suffix = this.message.nick ?
-                ':' :
-                '';
+            let suffix = this.message.nick ? ':' : '';
 
             return prefix + this.message.nick + suffix;
         },
@@ -101,7 +87,6 @@ export default {
 </script>
 
 <style lang="less">
-
 .kiwi-messagelist-message--text {
     position: relative;
     padding: 4px 10px;
@@ -154,7 +139,7 @@ export default {
 
 .kiwi-messagelist-message--text .kiwi-messagelist-message-privmsg:hover,
 .kiwi-messagelist-message--text .kiwi-messagelist-message-action:hover,
-.kiwi-messagelist-message--text .kiwi-messagelist-message-notice:hover, {
+.kiwi-messagelist-message--text .kiwi-messagelist-message-notice:hover {
     cursor: pointer;
 }
 
@@ -205,5 +190,4 @@ export default {
         padding-right: 0;
     }
 }
-
 </style>

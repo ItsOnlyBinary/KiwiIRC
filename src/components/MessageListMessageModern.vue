@@ -1,34 +1,28 @@
 <template>
     <div
         :class="[
-            isRepeat() ?
-                'kiwi-messagelist-message--authorrepeat' :
-                'kiwi-messagelist-message--authorfirst',
+            isRepeat()
+                ? 'kiwi-messagelist-message--authorrepeat'
+                : 'kiwi-messagelist-message--authorfirst',
             'kiwi-messagelist-message-' + message.type,
-            message.type_extra ?
-                'kiwi-messagelist-message-' + message.type + '-' + message.type_extra :
-                '',
-            ml.isMessageHighlight(message) ?
-                'kiwi-messagelist-message--highlight' :
-                '',
-            ml.isHoveringOverMessage(message) ?
-                'kiwi-messagelist-message--hover' :
-                '',
-            ml.buffer.last_read && message.time > ml.buffer.last_read ?
-                'kiwi-messagelist-message--unread' :
-                '',
-            message.nick.toLowerCase() === ml.ourNick.toLowerCase() ?
-                'kiwi-messagelist-message--own' :
-                '',
-            ml.message_info_open === message ?
-                'kiwi-messagelist-message--info-open' :
-                '',
-            ml.message_info_open && ml.message_info_open !== message ?
-                'kiwi-messagelist-message--blur' :
-                '',
+            message.type_extra
+                ? 'kiwi-messagelist-message-' + message.type + '-' + message.type_extra
+                : '',
+            ml.isMessageHighlight(message) ? 'kiwi-messagelist-message--highlight' : '',
+            ml.isHoveringOverMessage(message) ? 'kiwi-messagelist-message--hover' : '',
+            ml.buffer.last_read && message.time > ml.buffer.last_read
+                ? 'kiwi-messagelist-message--unread'
+                : '',
+            message.nick.toLowerCase() === ml.ourNick.toLowerCase()
+                ? 'kiwi-messagelist-message--own'
+                : '',
+            ml.message_info_open === message ? 'kiwi-messagelist-message--info-open' : '',
+            ml.message_info_open && ml.message_info_open !== message
+                ? 'kiwi-messagelist-message--blur'
+                : '',
         ]"
         :data-message-id="message.id"
-        :data-nick="(message.nick||'').toLowerCase()"
+        :data-nick="(message.nick || '').toLowerCase()"
         class="kiwi-messagelist-message kiwi-messagelist-message--modern"
         @click="ml.onMessageClick($event, message, true)"
         @dblclick="ml.onMessageDblClick($event, message)"
@@ -43,11 +37,11 @@
         <div class="kiwi-messagelist-modern-right">
             <div class="kiwi-messagelist-top">
                 <div
-                    :style="{ 'color': userColour }"
+                    :style="{ color: userColour }"
                     class="kiwi-messagelist-nick"
                     @click="ml.openUserBox(message.nick)"
-                    @mouseover="ml.hover_nick=message.nick.toLowerCase();"
-                    @mouseout="ml.hover_nick='';"
+                    @mouseover="ml.hover_nick = message.nick.toLowerCase()"
+                    @mouseout="ml.hover_nick = ''"
                 >
                     {{ message.user ? userModePrefix(message.user) : '' }}{{ message.nick }}
                 </div>
@@ -55,8 +49,8 @@
                     v-if="showRealName"
                     class="kiwi-messagelist-realname"
                     @click="ml.openUserBox(message.nick)"
-                    @mouseover="ml.hover_nick=message.nick.toLowerCase();"
-                    @mouseout="ml.hover_nick='';"
+                    @mouseover="ml.hover_nick = message.nick.toLowerCase()"
+                    @mouseout="ml.hover_nick = ''"
                 >
                     {{ message.user.realname }}
                 </div>
@@ -73,10 +67,10 @@
                 v-if="message.bodyTemplate && message.bodyTemplate.$el"
                 class="kiwi-messagelist-body"
             />
-            <div v-else class="kiwi-messagelist-body" v-html="ml.formatMessage(message)"/>
+            <div v-else class="kiwi-messagelist-body" v-html="ml.formatMessage(message)" />
 
             <message-info
-                v-if="ml.message_info_open===message"
+                v-if="ml.message_info_open === message"
                 :message="message"
                 :buffer="ml.buffer"
                 @close="ml.toggleMessageInfo()"
@@ -103,8 +97,7 @@ export default {
     },
     props: ['ml', 'message', 'idx'],
     data: function data() {
-        return {
-        };
+        return {};
     },
     computed: {
         showRealName() {
@@ -147,11 +140,13 @@ export default {
             let message = this.message;
             let prevMessage = ml.filteredMessages[idx - 1];
 
-            return prevMessage &&
+            return (
+                prevMessage &&
                 prevMessage.nick === message.nick &&
                 message.time - prevMessage.time < 60000 &&
                 prevMessage.type !== 'traffic' &&
-                message.type !== 'traffic';
+                message.type !== 'traffic'
+            );
         },
         isHoveringOverMessage(message) {
             return message.nick && message.nick.toLowerCase() === this.hover_nick.toLowerCase();
@@ -168,7 +163,6 @@ export default {
 </script>
 
 <style lang="less">
-
 .kiwi-messagelist-message--modern {
     border-left: 7px solid transparent;
     display: flex;
@@ -198,7 +192,8 @@ export default {
     padding-top: 0;
 }
 
-.kiwi-messagelist-message--modern.kiwi-messagelist-message--authorrepeat .kiwi-messagelist-modern-right {
+.kiwi-messagelist-message--modern.kiwi-messagelist-message--authorrepeat
+    .kiwi-messagelist-modern-right {
     padding-top: 0;
 }
 
@@ -221,7 +216,8 @@ export default {
 }
 
 .kiwi-messagelist-message--modern .kiwi-messagelist-message-topic .kiwi-messagelist-modern-left,
-.kiwi-messagelist-message--modern.kiwi-messagelist-message--authorrepeat.kiwi-messagelist-message-topic .kiwi-messagelist-modern-left {
+.kiwi-messagelist-message--modern.kiwi-messagelist-message--authorrepeat.kiwi-messagelist-message-topic
+    .kiwi-messagelist-modern-left {
     display: none;
 }
 
@@ -271,11 +267,13 @@ export default {
     margin-bottom: 0;
 }
 
-.kiwi-messagelist-message--modern.kiwi-messagelist-message-connection .kiwi-messagelist-modern-left {
+.kiwi-messagelist-message--modern.kiwi-messagelist-message-connection
+    .kiwi-messagelist-modern-left {
     display: none;
 }
 
-.kiwi-messagelist-message--modern.kiwi-messagelist-message-connection .kiwi-messagelist-modern-right {
+.kiwi-messagelist-message--modern.kiwi-messagelist-message-connection
+    .kiwi-messagelist-modern-right {
     margin-left: 0;
     padding: 0;
 }
@@ -336,7 +334,8 @@ export default {
         width: 10px;
     }
 
-    .kiwi-messagelist-message--modern.kiwi-messagelist-message-privmsg .kiwi-messagelist-modern-left,
+    .kiwi-messagelist-message--modern.kiwi-messagelist-message-privmsg
+        .kiwi-messagelist-modern-left,
     .kiwi-messagelist-message-notice .kiwi-messagelist-modern-left {
         display: none;
     }

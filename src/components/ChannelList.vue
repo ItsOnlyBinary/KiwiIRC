@@ -1,18 +1,19 @@
 <template>
-    <div :class="{'kiwi-channellist-padding-top': !list.length}" class="kiwi-channellist">
+    <div :class="{ 'kiwi-channellist-padding-top': !list.length }" class="kiwi-channellist">
         <div class="kiwi-channellist-content-container">
             <div class="kiwi-channellist-nav">
                 <form class="u-form kiwi-channellist-search" @submit.prevent>
-                    <input v-model="search" :placeholder="$t('do_search')" class="u-input" >
+                    <input v-model="search" :placeholder="$t('do_search')" class="u-input" />
                     <a
                         :class="{
                             'u-button-primary': !isLoading,
                             'u-button-secondary': isLoading,
                         }"
                         class="u-button kiwi-channellist-refresh"
-                        @click="maybeUpdateList">
-                        <i v-if="!isLoading" class="fa fa-refresh" aria-hidden="true"/>
-                        <i v-else class="fa fa-refresh fa-spin" aria-hidden="true"/>
+                        @click="maybeUpdateList"
+                    >
+                        <i v-if="!isLoading" class="fa fa-refresh" aria-hidden="true" />
+                        <i v-else class="fa fa-refresh fa-spin" aria-hidden="true" />
                     </a>
                 </form>
                 <div v-if="list.length" class="kiwi-channellist-pagination">
@@ -26,7 +27,7 @@
                     <tr v-for="channel in paginated" :key="channel.channel">
                         <td class="kiwi-channellist-user-center">
                             <span v-if="channel.num_users >= 0" class="kiwi-channellist-users">
-                                <i class="fa fa-user" aria-hidden="true"/> {{ channel.num_users }}
+                                <i class="fa fa-user" aria-hidden="true" /> {{ channel.num_users }}
                             </span>
                         </td>
                         <td>
@@ -34,10 +35,13 @@
                                 {{ channel.channel }}
                             </a>
                         </td>
-                        <td><div v-html="formatAndTrimTopic(channel.topic)"/></td>
+                        <td><div v-html="formatAndTrimTopic(channel.topic)" /></td>
                         <td class="kiwi-channellist-user-center">
-                            <a class="u-button u-button-primary"
-                               @click="joinChannel(channel.channel)"> {{ $t('container_join') }}
+                            <a
+                                class="u-button u-button-primary"
+                                @click="joinChannel(channel.channel)"
+                            >
+                                {{ $t('container_join') }}
                             </a>
                         </td>
                     </tr>
@@ -88,7 +92,7 @@ export default {
             if (this.search.length <= 2) {
                 list = this.list;
             } else {
-                list = this.list.filter((channel) => {
+                list = this.list.filter(channel => {
                     let found = false;
                     if (channel.channel.toLowerCase().indexOf(this.search) > -1) {
                         found = true;
@@ -161,7 +165,6 @@ export default {
 </script>
 
 <style>
-
 .kiwi-channellist {
     box-sizing: border-box;
     text-align: center;
@@ -277,5 +280,4 @@ export default {
         width: 100%;
     }
 }
-
 </style>

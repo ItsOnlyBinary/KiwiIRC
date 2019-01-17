@@ -1,38 +1,32 @@
 <template>
     <div
         :class="[
-            ml.filteredMessages[idx-1] &&
-                ml.filteredMessages[idx-1].nick === message.nick &&
-                message.time - ml.filteredMessages[idx-1].time < 60000 &&
-                ml.filteredMessages[idx-1].type !== 'traffic' &&
-                message.type !== 'traffic' ?
-                    'kiwi-messagelist-message--authorrepeat' :
-                    '',
+            ml.filteredMessages[idx - 1] &&
+            ml.filteredMessages[idx - 1].nick === message.nick &&
+            message.time - ml.filteredMessages[idx - 1].time < 60000 &&
+            ml.filteredMessages[idx - 1].type !== 'traffic' &&
+            message.type !== 'traffic'
+                ? 'kiwi-messagelist-message--authorrepeat'
+                : '',
             'kiwi-messagelist-message-' + message.type,
-            message.type_extra ?
-                'kiwi-messagelist-message-' + message.type + '-' + message.type_extra :
-                '',
-            ml.isMessageHighlight(message) ?
-                'kiwi-messagelist-message--highlight' :
-                '',
-            ml.isHoveringOverMessage(message) ?
-                'kiwi-messagelist-message--hover' :
-                '',
-            ml.buffer.last_read && message.time > ml.buffer.last_read ?
-                'kiwi-messagelist-message--unread' :
-                '',
-            message.nick.toLowerCase() === ml.ourNick.toLowerCase() ?
-                'kiwi-messagelist-message--own' :
-                '',
-            ml.message_info_open === message ?
-                'kiwi-messagelist-message--info-open' :
-                '',
-            ml.message_info_open && ml.message_info_open !== message ?
-                'kiwi-messagelist-message--blur' :
-                '',
+            message.type_extra
+                ? 'kiwi-messagelist-message-' + message.type + '-' + message.type_extra
+                : '',
+            ml.isMessageHighlight(message) ? 'kiwi-messagelist-message--highlight' : '',
+            ml.isHoveringOverMessage(message) ? 'kiwi-messagelist-message--hover' : '',
+            ml.buffer.last_read && message.time > ml.buffer.last_read
+                ? 'kiwi-messagelist-message--unread'
+                : '',
+            message.nick.toLowerCase() === ml.ourNick.toLowerCase()
+                ? 'kiwi-messagelist-message--own'
+                : '',
+            ml.message_info_open === message ? 'kiwi-messagelist-message--info-open' : '',
+            ml.message_info_open && ml.message_info_open !== message
+                ? 'kiwi-messagelist-message--blur'
+                : '',
         ]"
         :data-message-id="message.id"
-        :data-nick="(message.nick||'').toLowerCase()"
+        :data-nick="(message.nick || '').toLowerCase()"
         class="kiwi-messagelist-message kiwi-messagelist-message--compact"
         @click="ml.onMessageClick($event, message)"
     >
@@ -44,21 +38,23 @@
             {{ ml.formatTime(message.time) }}
         </div>
         <div
-            :style="{ 'color': userColour }"
+            :style="{ color: userColour }"
             class="kiwi-messagelist-nick"
             @click="ml.openUserBox(message.nick)"
-            @mouseover="ml.hover_nick=message.nick.toLowerCase();"
-            @mouseout="ml.hover_nick='';"
-        >{{ message.user ? userModePrefix(message.user) : '' }}{{ message.nick }}</div>
+            @mouseover="ml.hover_nick = message.nick.toLowerCase()"
+            @mouseout="ml.hover_nick = ''"
+        >
+            {{ message.user ? userModePrefix(message.user) : '' }}{{ message.nick }}
+        </div>
         <div
             v-rawElement="message.bodyTemplate.$el"
             v-if="message.bodyTemplate && message.bodyTemplate.$el"
             class="kiwi-messagelist-body"
         />
-        <div v-else class="kiwi-messagelist-body" v-html="ml.formatMessage(message)"/>
+        <div v-else class="kiwi-messagelist-body" v-html="ml.formatMessage(message)" />
 
         <message-info
-            v-if="ml.message_info_open===message"
+            v-if="ml.message_info_open === message"
             :message="message"
             :buffer="ml.buffer"
             @close="ml.toggleMessageInfo()"
@@ -81,8 +77,7 @@ export default {
     },
     props: ['ml', 'message', 'idx'],
     data: function data() {
-        return {
-        };
+        return {};
     },
     computed: {
         userColour() {
@@ -101,14 +96,13 @@ export default {
 </script>
 
 <style lang="less">
-
 .kiwi-messagelist-message--compact {
     position: relative;
 }
 
 .kiwi-messagelist-message--compact .kiwi-messagelist-message-privmsg:hover,
 .kiwi-messagelist-message--compact .kiwi-messagelist-message-action:hover,
-.kiwi-messagelist-message--compact .kiwi-messagelist-message-notice:hover, {
+.kiwi-messagelist-message--compact .kiwi-messagelist-message-notice:hover {
     cursor: pointer;
 }
 
@@ -237,7 +231,9 @@ export default {
         padding-left: 10px;
     }
 
-    .kiwi-messagelist-message--compact .kiwi-messagelist-message--authorrepeat .kiwi-messagelist-nick {
+    .kiwi-messagelist-message--compact
+        .kiwi-messagelist-message--authorrepeat
+        .kiwi-messagelist-nick {
         display: none;
     }
 
@@ -266,5 +262,4 @@ export default {
 .kiwi-messagelist-item:last-of-type {
     margin-bottom: 5px;
 }
-
 </style>

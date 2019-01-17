@@ -3,34 +3,46 @@
         <h3>{{ b.name }}</h3>
 
         <div
-            :class="{'kiwi-aboutbuffer-section--closed': closedSections.about}"
+            :class="{
+                'kiwi-aboutbuffer-section--closed': closedSections.about,
+            }"
             class="kiwi-aboutbuffer-section"
         >
             <h4 @click="toggleSection('about')">
-                <i class="fa fa-angle-right"/> {{ $t('about') }}
+                <i class="fa fa-angle-right" /> {{ $t('about') }}
             </h4>
             <div>
-                <p v-if="b.topic" v-html="formattedTopic"/>
+                <p v-if="b.topic" v-html="formattedTopic" />
                 <p v-else>{{ $t('no_topic_set') }}</p>
 
                 <p v-if="b.created_at">
-                    {{ $t('created_at', { when: new Intl.DateTimeFormat().format(b.created_at) }) }}
+                    {{
+                        $t('created_at', {
+                            when: new Intl.DateTimeFormat().format(b.created_at),
+                        })
+                    }}
                 </p>
 
                 <p class="kiwi-aboutbuffer-usercount">
                     <a class="u-link " @click="sidebarState.showNicklist()">
-                        {{ $t('person', {count: Object.keys(b.users || {}).length}) }}
+                        {{
+                            $t('person', {
+                                count: Object.keys(b.users || {}).length,
+                            })
+                        }}
                     </a>
                 </p>
             </div>
         </div>
 
         <div
-            :class="{'kiwi-aboutbuffer-section--closed': closedSections.highlights}"
+            :class="{
+                'kiwi-aboutbuffer-section--closed': closedSections.highlights,
+            }"
             class="kiwi-aboutbuffer-section"
         >
             <h4 @click="toggleSection('highlights')">
-                <i class="fa fa-angle-right"/> {{ $t('highlights') }}
+                <i class="fa fa-angle-right" /> {{ $t('highlights') }}
             </h4>
             <div>
                 <ul v-if="highlights.length > 0">
@@ -45,11 +57,13 @@
         <div
             v-for="plugin in pluginUiSections"
             :key="plugin.id"
-            :class="{'kiwi-aboutbuffer-section--closed': closedSections[plugin.id]}"
+            :class="{
+                'kiwi-aboutbuffer-section--closed': closedSections[plugin.id],
+            }"
             class="kiwi-aboutbuffer-section"
         >
             <h4 @click="toggleSection(plugin.id)">
-                <i class="fa fa-angle-right"/> {{ plugin.args.title }}
+                <i class="fa fa-angle-right" /> {{ plugin.args.title }}
             </h4>
             <div v-rawElement="plugin.el" />
         </div>
@@ -57,7 +71,6 @@
 </template>
 
 <script>
-
 'kiwi public';
 
 import GlobalApi from '@/libs/GlobalApi';
@@ -79,7 +92,9 @@ export default {
 
         formattedTopic() {
             let showEmoticons = this.$state.setting('buffers.show_emoticons');
-            let blocks = formatIrcMessage(this.b.topic || '', { extras: false });
+            let blocks = formatIrcMessage(this.b.topic || '', {
+                extras: false,
+            });
             let content = TextFormatting.styleBlocksToHtml(blocks, showEmoticons, null);
             return content.html;
         },
@@ -89,7 +104,8 @@ export default {
             // it changes
             /* eslint-disable no-unused-vars */
             let tmp = this.buffer.message_count;
-            return this.buffer.getMessages()
+            return this.buffer
+                .getMessages()
                 .filter(m => m.isHighlight)
                 .filter(m => m.type !== 'traffic')
                 .filter(m => m.type !== 'mode');
@@ -104,7 +120,6 @@ export default {
 </script>
 
 <style lang="less">
-
 /* Adjust the sidebars width when this component is in view */
 .kiwi-sidebar.kiwi-sidebar-section-about {
     max-width: 300px;
