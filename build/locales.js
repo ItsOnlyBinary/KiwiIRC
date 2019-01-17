@@ -1,5 +1,6 @@
 var path = require('path');
 var fs = require('fs');
+var ora = require('ora')
 var i18next_conv = require('i18next-conv');
 
 var source_path = path.join(__dirname, '../src/res/locales/');
@@ -28,7 +29,7 @@ exports.createJsonFiles = function() {
                 }
 
                 var locale = match[1];
-                var data = new Buffer([]);
+                var data = Buffer.alloc(0);
 
                 // Find all the other locale files for this locale and join them together into a
                 // single locale translation
@@ -66,5 +67,8 @@ exports.createJsonFiles = function() {
 };
 
 if (require.main === module) {
+    let spinner = ora('translating languages...')
+    spinner.start()
     exports.createJsonFiles();
+    spinner.succeed();
 }

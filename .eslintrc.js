@@ -8,17 +8,15 @@ module.exports = {
         sourceType: 'module'
     },
     extends: [
-        'airbnb-base',
+        '@vue/airbnb',
         'plugin:vue/recommended',
         'standard'
     ],
     env: {
         'browser': true,
     },
-    // required to lint *.vue files
     plugins: [
         'rulesdir',
-        'vue',
     ],
     // add your custom rules here
     'rules': {
@@ -43,6 +41,9 @@ module.exports = {
         'no-prototype-builtins': 0,
         'prefer-promise-reject-errors': 0,
         'no-control-regex': 0,
+        'no-else-return': [ 'warn', {
+            'allowElseIf': true
+        }],
         'object-shorthand': 0,
         'operator-linebreak': 0,
         'prefer-const': 0,
@@ -50,9 +51,15 @@ module.exports = {
         'prefer-template': 0,
         'semi': ['error', 'always'],
         'space-before-function-paren': ['error', 'never'],
+        'vue/html-closing-bracket-spacing': ['warning', {
+            'selfClosingTag': 'never'
+        }],
         'vue/html-indent': ['error', 4],
         'vue/max-attributes-per-line': 0,
+        'vue/multiline-html-element-content-newline': 0,
+        'vue/no-v-html': 0,
         'vue/require-prop-types': 0,
         'vue/require-default-prop': 0,
+        'vue/singleline-html-element-content-newline': 0,
     }
 }
