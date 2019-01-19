@@ -11,8 +11,8 @@
 
             <input
                 ref="user_filter"
-                :placeholder="$t('filter_users')"
                 v-model="user_filter"
+                :placeholder="$t('filter_users')"
                 @blur="onFilterBlur"
             >
             <i class="fa fa-search"/>

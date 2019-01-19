@@ -14,7 +14,7 @@
                 :src="url"
                 class="kiwi-mediaviewer-iframe"
             />
-            <component v-else-if="component" :is="component"/>
+            <component :is="component" v-else-if="component"/>
             <a
                 v-else
                 :href="url"

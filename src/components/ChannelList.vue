@@ -10,7 +10,8 @@
                             'u-button-secondary': isLoading,
                         }"
                         class="u-button kiwi-channellist-refresh"
-                        @click="maybeUpdateList">
+                        @click="maybeUpdateList"
+                    >
                         <i v-if="!isLoading" class="fa fa-refresh" aria-hidden="true"/>
                         <i v-else class="fa fa-refresh fa-spin" aria-hidden="true"/>
                     </a>
@@ -37,7 +38,8 @@
                         <td><div v-html="formatAndTrimTopic(channel.topic)"/></td>
                         <td class="kiwi-channellist-user-center">
                             <a class="u-button u-button-primary"
-                               @click="joinChannel(channel.channel)"> {{ $t('container_join') }}
+                               @click="joinChannel(channel.channel)"
+                            > {{ $t('container_join') }}
                             </a>
                         </td>
                     </tr>

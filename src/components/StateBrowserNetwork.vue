@@ -1,7 +1,8 @@
 <template>
     <div :class="[
         isActiveNetwork ? 'kiwi-statebrowser-network--active' : '',
-    ]" class="kiwi-statebrowser-network">
+    ]" class="kiwi-statebrowser-network"
+    >
         <div class="kiwi-statebrowser-network-header">
             <a
                 class="kiwi-statebrowser-network-name u-link"
@@ -39,8 +40,8 @@
 
         <div v-if="channel_filter_display" class="kiwi-statebrowser-channelfilter">
             <input
-                v-focus
                 v-model="channel_filter"
+                v-focus
                 :placeholder="$t('filter_channels')"
                 type="text"
                 @blur="onChannelFilterInputBlur"
@@ -67,8 +68,8 @@
                     class="kiwi-statebrowser-newchannel-inputwrap"
                 >
                     <input
-                        :placeholder="$t('state_join')"
                         v-model="channel_add_input"
+                        :placeholder="$t('state_join')"
                         type="text"
                         @focus="onNewChannelInputFocus"
                         @blur="onNewChannelInputBlur"
@@ -79,7 +80,8 @@
 
         <div :class="[
             collapsed ? 'kiwi-statebrowser-network-toggable-area--collapsed' : '',
-        ]" class="kiwi-statebrowser-network-toggable-area">
+        ]" class="kiwi-statebrowser-network-toggable-area"
+        >
             <transition name="kiwi-statebrowser-network-status-transition">
                 <div v-if="network.state !== 'connected'" class="kiwi-statebrowser-network-status">
                     <template v-if="network.state_error">
@@ -159,12 +161,8 @@ import _ from 'lodash';
 import state from '@/libs/state';
 import * as Misc from '@/helpers/Misc';
 import * as bufferTools from '@/libs/bufferTools';
-import BufferSettings from './BufferSettings';
 
 export default {
-    components: {
-        BufferSettings,
-    },
     props: ['network', 'sidebarState'],
     data: function data() {
         return {

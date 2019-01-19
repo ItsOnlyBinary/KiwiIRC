@@ -37,11 +37,11 @@
                     <control-input :container="networks" :buffer="buffer"/>
                 </template>
                 <component
-                    v-else-if="!activeComponent"
                     :is="fallbackComponent"
+                    v-else-if="!activeComponent"
                     v-bind="fallbackComponentProps"
                 />
-                <component v-else :is="activeComponent" v-bind="activeComponentProps"/>
+                <component :is="activeComponent" v-else v-bind="activeComponentProps"/>
             </div>
         </template>
     </div>

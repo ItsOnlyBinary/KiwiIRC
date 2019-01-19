@@ -20,7 +20,7 @@
 let Vue = require('vue');
 
 export default Vue.component('input-confirm', {
-    props: ['label', 'flip_connotation'],
+    props: ['label', 'flipConnotation'],
     data: function data() {
         return {
             state: 'pre',

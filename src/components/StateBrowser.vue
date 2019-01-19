@@ -39,9 +39,9 @@
 
         <div class="kiwi-statebrowser-tools">
             <div
-                v-rawElement="plugin.el"
                 v-for="plugin in pluginUiElements"
                 :key="plugin.id"
+                v-rawElement="plugin.el"
                 class="kiwi-statebrowser-tool"
             />
         </div>
@@ -111,13 +111,11 @@ import NetworkProvider from '@/libs/NetworkProvider';
 import GlobalApi from '@/libs/GlobalApi';
 import StateBrowserNetwork from './StateBrowserNetwork';
 import AppSettings from './AppSettings';
-import BufferSettings from './BufferSettings';
 
 let netProv = new NetworkProvider();
 
 export default {
     components: {
-        BufferSettings,
         StateBrowserNetwork,
     },
     props: ['networks', 'sidebarState'],

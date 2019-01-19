@@ -16,8 +16,8 @@
 
                     <input-text
                         v-if="showNick"
-                        :label="$t('nick')"
                         v-model="nick"
+                        :label="$t('nick')"
                         class="kiwi-welcome-simple-nick"
                     />
                     <label v-if="showPass" class="kiwi-welcome-simple-have-password">
@@ -25,17 +25,17 @@
                         <span> {{ $t('password_have') }} </span>
                     </label>
                     <input-text
-                        v-focus
                         v-if="show_password_box"
-                        :label="$t('password')"
                         v-model="password"
+                        v-focus
+                        :label="$t('password')"
                         class="kiwi-welcome-simple-password u-input-text--reveal-value"
                         type="password"
                     />
                     <input-text
                         v-if="showChannel"
-                        :label="$t('channel')"
                         v-model="channel"
+                        :label="$t('channel')"
                         class="kiwi-welcome-simple-channel"
                     />
 

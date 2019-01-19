@@ -44,12 +44,14 @@
                         @input="inputUpdate"
                         @keydown="inputKeyDown($event)"
                         @keyup="inputKeyUp($event)"
-                        @click="closeInputTool"/>
+                        @click="closeInputTool"
+                    />
                 </div>
                 <button
                     v-if="shouldShowSendButton"
                     type="submit"
-                    class="kiwi-controlinput-send fa fa-paper-plane" />
+                    class="kiwi-controlinput-send fa fa-paper-plane"
+                />
             </form>
 
             <div ref="plugins" class="kiwi-controlinput-tools">
@@ -73,14 +75,14 @@
                             <i class="fa fa-smile-o" aria-hidden="true"/>
                         </a>
                         <div
+                            v-for="plugin in pluginUiElements"
+                            :key="plugin.id"
                             v-rawElement="{
                                 el: plugin.el,
                                 props: {
                                     controlinput: self,
                                 }
                             }"
-                            v-for="plugin in pluginUiElements"
-                            :key="plugin.id"
                             class="kiwi-controlinput-tool"
                         />
                     </div>

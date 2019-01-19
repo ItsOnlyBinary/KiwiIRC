@@ -17,21 +17,21 @@
 
                     <input-text
                         v-if="showUser"
-                        :label="$t('username')"
                         v-model="username"
+                        :label="$t('username')"
                         class="kiwi-welcome-znc-nick"
                     />
                     <input-text
                         v-if="showPass"
-                        :label="$t('password')"
                         v-model="password"
+                        :label="$t('password')"
                         class="kiwi-welcome-znc-password"
                         type="password"
                     />
                     <input-text
                         v-if="showNetwork"
-                        :label="$t('network')"
                         v-model="znc_network"
+                        :label="$t('network')"
                         class="kiwi-welcome-znc-channel"
                     />
                     <button

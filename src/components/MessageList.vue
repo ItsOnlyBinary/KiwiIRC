@@ -33,8 +33,8 @@
                  checks for a message.bodyTemplate custom component to apply only to the body area
             -->
             <div
-                v-rawElement="message.template.$el"
                 v-if="message.render() && message.template && message.template.$el"
+                v-rawElement="message.template.$el"
             />
             <message-list-message-modern
                 v-else-if="listType === 'modern'"

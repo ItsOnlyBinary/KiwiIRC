@@ -25,8 +25,8 @@
                                 <select v-model="theme">
                                     <option
                                         v-for="t in settings.themes"
-                                        :value="t.name"
                                         :key="t.name"
+                                        :value="t.name"
                                     >
                                         {{ t.name }}
                                     </option>
@@ -127,7 +127,8 @@
                         </div>
                     </div>
                     <div v-if="!state.setting('hide_advanced') && !settingAdvancedEnable"
-                         class="kiwi-appsettings-block">
+                         class="kiwi-appsettings-block"
+                    >
                         <h3>{{ $t('settings_advanced_title') }}</h3>
                         <div class="kiwi-appsettings-section kiwi-appsettings-advanced-enable">
                             <div>
@@ -157,7 +158,8 @@
                 <tabbed-tab
                     v-if="settingAdvancedEnable"
                     :header="$t('settings_advanced')"
-                    name="advanced">
+                    name="advanced"
+                >
                     <div class="kiwi-appsettings-block kiwi-appsettings-block-advanced">
                         <div class="kiwi-appsettings-section kiwi-appsettings-advanced">
                             <settings-advanced/>
@@ -169,7 +171,8 @@
                     v-for="item in pluginUiElements"
                     :key="item.id"
                     :header="item.title"
-                    :name="item.title">
+                    :name="item.title"
+                >
                     <div :is="item.component" v-bind="item.props"/>
                 </tabbed-tab>
             </tabbed-view>

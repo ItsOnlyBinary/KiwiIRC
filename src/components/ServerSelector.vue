@@ -20,15 +20,15 @@
 
         <template v-if="showCustom || presetNetworks.length === 0 || !usePreset">
             <input-text
+                v-model="server"
                 v-focus
                 :label="$t('server')"
-                v-model="server"
                 class="kiwi-networksettings-connection-address"
             />
 
             <input-text
-                :label="$t('settings_port')"
                 v-model="port"
+                :label="$t('settings_port')"
                 type="number"
                 class="kiwi-networksettings-connection-port"
             >
