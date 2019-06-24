@@ -14,6 +14,8 @@
   },
   "dependencies": {
     "@panter/vue-i18next": "^0.13.0",
+    "compare-versions": "^3.5.0",
+    "css-vars-ponyfill": "^2.0.2",
     "event-emitter": "^0.3.5",
     "font-awesome": "^4.7.0",
     "font-awesome-webpack": "https://github.com/jarecsni/font-awesome-webpack#440af2a2efe7ba1779d039556f04538e57bad4bb",
@@ -25,6 +27,7 @@
     "strftime": "^0.10.0",
     "tinycon": "^0.6.8",
     "vue": "^2.5.21",
+    "vue-virtual-scroller": "^1.0.0-rc.2",
     "whatwg-fetch": "^3.0.0",
     "xhr": "^2.5.0"
   },
