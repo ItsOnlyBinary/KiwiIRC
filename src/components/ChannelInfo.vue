@@ -12,8 +12,8 @@
                     <i :class="'fa fa-caret-' + (showPrevTopics ? 'up' : 'down')" />
                 </a>
                 <ul v-if="showPrevTopics">
-                    <li v-for="(topic, idx) in buffer.topics" :key="idx">
-                        <span>{{ topic }}</span>
+                    <li v-for="(topicText, idx) in buffer.topics" :key="idx">
+                        <span>{{ topicText }}</span>
                     </li>
                 </ul>
             </div>
