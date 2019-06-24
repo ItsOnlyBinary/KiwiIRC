@@ -7,7 +7,7 @@ module.exports = {
     assetsDir: 'static/',
     lintOnSave: false,
     runtimeCompiler: true,
-    transpileDependencies: ['ip-regex'],
+    transpileDependencies: ['ip-regex', 'runes'],
     configureWebpack: {
         resolve: {
             extensions: ['.js', '.vue', '.json'],
@@ -16,7 +16,7 @@ module.exports = {
             },
         },
         performance: {
-            maxEntrypointSize: 1200000,
+            maxEntrypointSize: 1400000,
             maxAssetSize: 1000000,
         },
         optimization: {
