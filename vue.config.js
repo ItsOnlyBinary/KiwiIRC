@@ -34,8 +34,8 @@ module.exports = {
             ]),
         ],
     },
-    chainWebpack: config => {
-        config.plugin('html').tap(args => {
+    chainWebpack: (config) => {
+        config.plugin('html').tap((args) => {
             args[0].template = path.join(__dirname, 'index.html');
             return args;
         });
@@ -49,7 +49,8 @@ module.exports = {
         // Remove the old 'app' entry
         config.entryPoints.delete('app');
 
-        // IE11 required by the webpack runtime for async import(). babel polyfills don't help us here
+        // IE11 required by the webpack runtime for async import().
+        // babel polyfills don't help us here
         config.entry('app').add('core-js/fn/promise');
 
         // IE11 play nice with json5
