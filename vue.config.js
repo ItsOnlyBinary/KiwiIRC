@@ -7,7 +7,7 @@ module.exports = {
     assetsDir: 'static/',
     lintOnSave: false,
     runtimeCompiler: true,
-    transpileDependencies: ['ip-regex', 'runes'],
+    transpileDependencies: ['ip-regex', 'isomorphic-textencoder'],
     configureWebpack: {
         resolve: {
             extensions: ['.js', '.vue', '.json'],
@@ -57,6 +57,10 @@ module.exports = {
         config.entry('app').add('core-js/es6/symbol');
         config.entry('app').add('core-js/fn/string/code-point-at');
         config.entry('app').add('core-js/fn/string/from-code-point');
+
+        // IE11 play nice with vue-vue-virtual-scroller
+        config.entry('app').add('core-js/fn/array/virtual/find-index');
+        config.entry('app').add('core-js/fn/array/virtual/includes');
 
         // Kiwiirc main entry point
         config.entry('app').add('./src/main.js');
