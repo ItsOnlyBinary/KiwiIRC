@@ -43,7 +43,7 @@ module.exports = {
         // add builds/ to resolveLoader for exports-loader
         config.resolveLoader.modules.add(path.resolve(__dirname, 'build/'));
 
-        // // add exports-loader for GobalApi
+        // add exports-loader for GobalApi
         const vueRule = config.module.rule('vue');
         const vueCacheOptions = vueRule.uses.get('cache-loader').get('options');
         const vueOptions = vueRule.uses.get('vue-loader').get('options');
@@ -72,12 +72,7 @@ module.exports = {
         // babel polyfills don't help us here
         config.entry('app').add('core-js/fn/promise');
 
-        // IE11 play nice with json5
-        config.entry('app').add('core-js/es6/symbol');
-        config.entry('app').add('core-js/fn/string/code-point-at');
-        config.entry('app').add('core-js/fn/string/from-code-point');
-
-        // IE11 play nice with vue-vue-virtual-scroller
+        // IE11 play nice with vue-virtual-scroller
         config.entry('app').add('core-js/fn/array/virtual/find-index');
         config.entry('app').add('core-js/fn/array/virtual/includes');
 
