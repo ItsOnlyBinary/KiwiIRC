@@ -6,7 +6,7 @@
             <transition name="kiwi-selfuser-trans">
                 <self-user
                     v-if="networkState==='connected'
-                    && selfuser_open === true"
+                        && selfuser_open === true"
                     :network="buffer.getNetwork()"
                     @close="selfuser_open=false"
                 />
@@ -52,18 +52,21 @@
                         @input="inputUpdate"
                         @keydown="inputKeyDown($event)"
                         @keyup="inputKeyUp($event)"
-                        @click="closeInputTool"/>
+                        @click="closeInputTool"
+                    />
                 </div>
                 <button
                     v-if="shouldShowSendButton"
                     type="submit"
-                    class="kiwi-controlinput-send fa fa-paper-plane" />
+                    class="kiwi-controlinput-send fa fa-paper-plane"
+                />
             </form>
 
             <div
                 v-if="shouldShowInputButtons"
                 ref="plugins"
-                class="kiwi-controlinput-tools">
+                class="kiwi-controlinput-tools"
+            >
                 <div
                     :class="{'kiwi-controlinput-tools-container-expand--inverse': !showPlugins}"
                     class="kiwi-controlinput-tools-container-expand"
@@ -76,25 +79,26 @@
                         <a
                             v-if="shouldShowColorPicker"
                             class="kiwi-controlinput-tool"
-                            @click.prevent="onToolClickTextStyle">
-                            <i class="fa fa-adjust" aria-hidden="true"/>
+                            @click.prevent="onToolClickTextStyle"
+                        >
+                            <i class="fa fa-adjust" aria-hidden="true" />
                         </a>
                         <a
                             v-if="shouldShowEmojiPicker"
                             class="kiwi-controlinput-tool"
                             @click.prevent="onToolClickEmoji"
                         >
-                            <i class="fa fa-smile-o" aria-hidden="true"/>
+                            <i class="fa fa-smile-o" aria-hidden="true" />
                         </a>
                         <div
+                            v-for="plugin in pluginUiElements"
+                            :key="plugin.id"
                             v-rawElement="{
                                 el: plugin.el,
                                 props: {
                                     controlinput: self,
                                 }
                             }"
-                            v-for="plugin in pluginUiElements"
-                            :key="plugin.id"
                             class="kiwi-controlinput-tool"
                         />
                     </div>
@@ -103,7 +107,7 @@
         </div>
 
         <div class="kiwi-controlinput-active-tool">
-            <component :is="active_tool" v-bind="active_tool_props"/>
+            <component :is="active_tool" v-bind="active_tool_props" />
         </div>
     </div>
 </template>

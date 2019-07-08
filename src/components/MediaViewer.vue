@@ -5,7 +5,7 @@
                 class="u-button u-button-warning kiwi-mediaviewer-controls-close"
                 @click="closeViewer"
             >
-                <i class="fa fa-window-close" aria-hidden="true"/>
+                <i class="fa fa-window-close" aria-hidden="true" />
             </a>
         </div>
         <div :key="url">
@@ -14,7 +14,7 @@
                 :src="url"
                 class="kiwi-mediaviewer-iframe"
             />
-            <component v-else-if="component" :is="component"/>
+            <component :is="component" v-else-if="component" />
             <a
                 v-else
                 :href="url"

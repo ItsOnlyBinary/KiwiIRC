@@ -1,13 +1,12 @@
 <template>
     <div class="kiwi-statebrowser kiwi-theme-bg">
-
         <div
             v-if="!$state.setting('hideSettings')"
             :title="$t('kiwi_settings')"
             class="kiwi-statebrowser-appsettings"
             @click="clickAppSettings"
         >
-            <i class="fa fa-cog" aria-hidden="true"/>
+            <i class="fa fa-cog" aria-hidden="true" />
         </div>
 
         <state-browser-usermenu
@@ -17,9 +16,9 @@
 
         <div class="kiwi-statebrowser-tools">
             <div
-                v-rawElement="plugin.el"
                 v-for="plugin in pluginUiElements"
                 :key="plugin.id"
+                v-rawElement="plugin.el"
                 class="kiwi-statebrowser-tool"
             />
         </div>
@@ -45,7 +44,9 @@
                     :key="pNetTypeName"
                     class="kiwi-statebrowser-availablenetworks-type"
                 >
-                    <div class="kiwi-statebrowser-availablenetworks-name">{{ pNetTypeName }}</div>
+                    <div class="kiwi-statebrowser-availablenetworks-name">
+                        {{ pNetTypeName }}
+                    </div>
                     <div
                         v-for="pNet in pNets"
                         :key="pNet.name"
@@ -74,7 +75,7 @@
         <div v-if="!isRestrictedServer" class="kiwi-statebrowser-newnetwork">
             <a class="u-button u-button-primary" @click="clickAddNetwork">
                 {{ $t('add_network') }}
-                <i class="fa fa-plus" aria-hidden="true"/>
+                <i class="fa fa-plus" aria-hidden="true" />
             </a>
         </div>
     </div>

@@ -1,8 +1,8 @@
 'kiwi public';
 
-import * as Misc from '@/helpers/Misc';
 import Vue from 'vue';
 import _ from 'lodash';
+import * as Misc from '@/helpers/Misc';
 import { configTemplates } from '@/res/configTemplates';
 import NetworkState from './state/NetworkState';
 import BufferState from './state/BufferState';

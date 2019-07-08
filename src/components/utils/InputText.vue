@@ -6,7 +6,6 @@
             hasFocus || currentValue ? 'u-input-text--reveal-value' : ''
         ]"
     >
-
         <span class="u-input-text-label">{{ label }}</span>
 
         <template v-if="type==='password'">
@@ -45,11 +44,11 @@
         >
 
         <div v-if="$slots.default" class="u-input-text-c">
-            <slot/>
+            <slot />
         </div>
 
         <div class="u-input-text-underline">
-            <div class="u-input-text-underline-active"/>
+            <div class="u-input-text-underline-active" />
         </div>
     </div>
 </template>

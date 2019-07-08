@@ -29,7 +29,9 @@
                             <option
                                 v-for="user in knownAccounts"
                                 :key="user.nick" :value="user.account"
-                            >{{ user.account }}</option>
+                            >
+                                {{ user.account }}
+                            </option>
                         </select>
                         <button @click="addAccountInvite($refs.addInviteList.value)">
                             {{ $t('invite_add_invite') }}
@@ -47,8 +49,8 @@
                     <tr>
                         <th>{{ $t('invites_user') }}</th>
                         <th>{{ $t('invites_by') }}</th>
-                        <th/>
-                        <th/>
+                        <th />
+                        <th />
                     </tr>
                     <tr v-for="invite in inviteListAccounts" :key="invite.invited">
                         <td class="kiwi-invitelist-table-mask">

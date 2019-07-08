@@ -1,6 +1,8 @@
 <template>
     <div class="u-input-confirm kiwi-theme-bg">
-        <div v-if="state==='pre'" @click="prompt"><slot/></div>
+        <div v-if="state==='pre'" @click="prompt">
+            <slot />
+        </div>
 
         <template v-if="state==='prompt'">
             <span class="u-input-confirm-label">{{ label }}</span>
@@ -20,7 +22,7 @@
 let Vue = require('vue');
 
 export default Vue.component('input-confirm', {
-    props: ['label', 'flip_connotation'],
+    props: ['label', 'flipConnotation'],
     data: function data() {
         return {
             state: 'pre',

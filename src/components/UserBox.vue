@@ -5,10 +5,12 @@
         </span>
         <div class="kiwi-userbox-header">
             <h3>
-                <away-status-indicator :network="network" :user="user"/> {{ user.nick }}
+                <away-status-indicator :network="network" :user="user" /> {{ user.nick }}
                 <span v-if="userMode" class="kiwi-userbox-modestring">+{{ userMode }}</span>
             </h3>
-            <div class="kiwi-userbox-usermask">{{ user.username }}@{{ user.host }}</div>
+            <div class="kiwi-userbox-usermask">
+                {{ user.username }}@{{ user.host }}
+            </div>
         </div>
 
         <div class="kiwi-userbox-basicinfo">
@@ -18,18 +20,18 @@
 
         <p class="kiwi-userbox-actions">
             <a v-if="!isSelf" class="kiwi-userbox-action" @click="openQuery">
-                <i class="fa fa-comment-o" aria-hidden="true"/>
+                <i class="fa fa-comment-o" aria-hidden="true" />
                 {{ $t('send_a_message') }}
             </a>
             <a v-if="!whoisRequested" class="kiwi-userbox-action" @click="updateWhoisData">
-                <i class="fa fa-question-circle" aria-hidden="true"/>
+                <i class="fa fa-question-circle" aria-hidden="true" />
                 {{ $t('more_information') }}
             </a>
         </p>
 
         <form v-if="!isSelf" class="u-form kiwi-userbox-ignoreuser">
             <label>
-                <input v-model="user.ignore" type="checkbox" >
+                <input v-model="user.ignore" type="checkbox">
                 <span> {{ $t('ignore_user') }} </span>
             </label>
         </form>
@@ -40,7 +42,7 @@
             class="kiwi-userbox-whois"
         >
             <template v-if="whoisLoading">
-                <i class="fa fa-spinner" aria-hidden="true"/>
+                <i class="fa fa-spinner" aria-hidden="true" />
             </template>
             <template v-else>
                 <span class="kiwi-userbox-whois-line">
@@ -100,7 +102,7 @@
                                kiwi-userbox-opaction-kick kiwi-userbox-opaction"
                         @click="kickUser"
                     >
-                        <i class="fa fa-sign-out" aria-hidden="true"/>
+                        <i class="fa fa-sign-out" aria-hidden="true" />
                         {{ $t('user_kick') }}
                     </button>
                 </label>
@@ -110,7 +112,7 @@
                                kiwi-userbox-opaction-ban kiwi-userbox-opaction"
                         @click="banUser"
                     >
-                        <i class="fa fa-ban" aria-hidden="true"/>
+                        <i class="fa fa-ban" aria-hidden="true" />
                         {{ $t('user_ban') }}
                     </button>
                 </label>
@@ -120,7 +122,7 @@
                                kiwi-userbox-opaction-kickban kiwi-userbox-opaction"
                         @click="kickbanUser"
                     >
-                        <i class="fa fa-exclamation-triangle" aria-hidden="true"/>
+                        <i class="fa fa-exclamation-triangle" aria-hidden="true" />
                         {{ $t('user_kickban') }}
                     </button>
                 </label>

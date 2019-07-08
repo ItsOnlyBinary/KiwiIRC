@@ -1,7 +1,8 @@
 <template>
     <div :class="[
         isActiveNetwork ? 'kiwi-statebrowser-network--active' : '',
-    ]" class="kiwi-statebrowser-network">
+    ]" class="kiwi-statebrowser-network"
+    >
         <div class="kiwi-statebrowser-network-header">
             <a
                 class="kiwi-statebrowser-network-name u-link"
@@ -10,7 +11,7 @@
                 {{ network.name }}
             </a>
             <div class="kiwi-network-name-hover-icon">
-                <i class="fa fa-ellipsis-h" aria-hidden="true"/>
+                <i class="fa fa-ellipsis-h" aria-hidden="true" />
             </div>
             <div class="kiwi-network-name-options">
                 <div
@@ -25,22 +26,22 @@
                     class="kiwi-network-name-option kiwi-network-name-option-channel"
                     @click="toggleAddChannel()"
                 >
-                    <i class="fa fa-plus" aria-hidden="true"/>
+                    <i class="fa fa-plus" aria-hidden="true" />
                 </div>
                 <div
                     :class="{ active: channel_filter_display == true }"
                     class="kiwi-network-name-option kiwi-network-name-option-chanfilter"
                     @click="toggleFilterChannel()"
                 >
-                    <i class="fa fa-search" aria-hidden="true"/>
+                    <i class="fa fa-search" aria-hidden="true" />
                 </div>
             </div>
         </div>
 
         <div v-if="channel_filter_display" class="kiwi-statebrowser-channelfilter">
             <input
-                v-focus
                 v-model="channel_filter"
+                v-focus
                 :placeholder="$t('filter_channels')"
                 type="text"
                 @blur="onChannelFilterInputBlur"
@@ -67,8 +68,8 @@
                     class="kiwi-statebrowser-newchannel-inputwrap"
                 >
                     <input
-                        :placeholder="$t('state_join')"
                         v-model="channel_add_input"
+                        :placeholder="$t('state_join')"
                         type="text"
                         @focus="onNewChannelInputFocus"
                         @blur="onNewChannelInputBlur"
@@ -79,11 +80,12 @@
 
         <div :class="[
             collapsed ? 'kiwi-statebrowser-network-toggable-area--collapsed' : '',
-        ]" class="kiwi-statebrowser-network-toggable-area">
+        ]" class="kiwi-statebrowser-network-toggable-area"
+        >
             <transition name="kiwi-statebrowser-network-status-transition">
                 <div v-if="network.state !== 'connected'" class="kiwi-statebrowser-network-status">
                     <template v-if="network.state_error">
-                        <i class="fa fa-exclamation-triangle" aria-hidden="true"/>
+                        <i class="fa fa-exclamation-triangle" aria-hidden="true" />
                         <a class="u-link" @click="showNetworkSettings(network)">
                             {{ $t('state_configure') }}
                         </a>
@@ -139,7 +141,7 @@
                     </div>
 
                     <div class="kiwi-statebrowser-channel-leave" @click="closeBuffer(buffer)">
-                        <i class="fa fa-times" aria-hidden="true"/>
+                        <i class="fa fa-times" aria-hidden="true" />
                     </div>
                 </div>
             </div>

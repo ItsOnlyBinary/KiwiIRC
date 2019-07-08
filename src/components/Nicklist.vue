@@ -11,11 +11,11 @@
 
             <input
                 ref="user_filter"
-                :placeholder="$t('filter_users')"
                 v-model="user_filter"
+                :placeholder="$t('filter_users')"
                 @blur="onFilterBlur"
             >
-            <i class="fa fa-search"/>
+            <i class="fa fa-search" />
         </div>
 
         <DynamicScroller
@@ -149,7 +149,7 @@ export default {
                 let bP = prefixOrders[modesB[0]];
                 if (aP > bP) {
                     return 1;
-                } else if (aP < bP) {
+                } if (aP < bP) {
                     return -1;
                 }
 
@@ -200,7 +200,7 @@ export default {
 <style lang="less">
 
 /* Adjust the sidebars width when this nicklist is in view */
-.kiwi-sidebar.kiwi-sidebar-section-nicklist {
+.kiwi-container--sidebar-open .kiwi-sidebar.kiwi-sidebar-section-nicklist {
     max-width: 250px;
     width: 250px;
 }

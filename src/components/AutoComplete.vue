@@ -1,6 +1,5 @@
 <template>
     <div class="kiwi-autocomplete kiwi-theme-bg">
-
         <div
             v-for="item in filteredAndLimitedItems"
             :key="item.type+item.text"

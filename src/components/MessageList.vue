@@ -33,8 +33,8 @@
                  checks for a message.bodyTemplate custom component to apply only to the body area
             -->
             <div
-                v-rawElement="message.template.$el"
                 v-if="message.render() && message.template && message.template.$el"
+                v-rawElement="message.template.$el"
             />
             <message-list-message-modern
                 v-else-if="listType === 'modern'"
@@ -67,7 +67,6 @@
             :buffer="buffer"
             :network="buffer.getNetwork()"
         />
-
     </div>
 </template>
 
@@ -157,7 +156,7 @@ export default {
             messages.sort((a, b) => {
                 if (a.time > b.time) {
                     return 1;
-                } else if (b.time > a.time) {
+                } if (b.time > a.time) {
                     return -1;
                 }
 

@@ -20,15 +20,15 @@
 
         <template v-if="showCustom || presetNetworks.length === 0 || !usePreset">
             <input-text
+                v-model="connection.server"
                 v-focus
                 :label="$t('server')"
-                v-model="connection.server"
                 class="kiwi-networksettings-connection-address"
             />
 
             <input-text
-                :label="$t('settings_port')"
                 v-model="connection.port"
+                :label="$t('settings_port')"
                 type="number"
                 class="kiwi-networksettings-connection-port"
             >
@@ -37,7 +37,7 @@
                     class="fa-stack fa-lg kiwi-customserver-tls"
                     @click="toggleTls"
                 >
-                    <i class="fa fa-lock fa-stack-1x kiwi-customserver-tls-lock"/>
+                    <i class="fa fa-lock fa-stack-1x kiwi-customserver-tls-lock" />
                     <i
                         v-if="!connection.tls"
                         class="fa fa-unlock fa-stack-1x kiwi-customserver-tls-minus"

@@ -7,17 +7,21 @@
                 <tr>
                     <th>{{ $t('bans_user') }}</th>
                     <th>{{ $t('bans_by') }}</th>
-                    <th/>
-                    <th/>
+                    <th />
+                    <th />
                 </tr>
                 <tr v-for="ban in banlist" :key="ban.banned">
-                    <td class="kiwi-channelbanlist-table-mask">{{ ban.banned }}</td>
-                    <td class="kiwi-channelbanlist-table-bannedby">{{ ban.banned_by }}</td>
+                    <td class="kiwi-channelbanlist-table-mask">
+                        {{ ban.banned }}
+                    </td>
+                    <td class="kiwi-channelbanlist-table-bannedby">
+                        {{ ban.banned_by }}
+                    </td>
                     <td class="kiwi-channelbanlist-table-bannedat">
                         {{ (new Date(ban.banned_at * 1000)).toDateString() }}
                     </td>
                     <td class="kiwi-channelbanlist-table-actions">
-                        <i class="fa fa-trash" aria-hidden="true" @click="removeBan(ban.banned)"/>
+                        <i class="fa fa-trash" aria-hidden="true" @click="removeBan(ban.banned)" />
                     </td>
                 </tr>
             </table>

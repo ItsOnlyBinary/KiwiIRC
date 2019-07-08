@@ -3,9 +3,9 @@
                     :class="{ 'kiwi-welcome-simple--recaptcha': recaptchaSiteId }"
                     class="kiwi-welcome-simple"
     >
-        <template v-slot:connection v-if="!network || network.state === 'disconnected'">
+        <template v-if="!network || network.state === 'disconnected'" v-slot:connection>
             <form class="u-form kiwi-welcome-simple-form" @submit.prevent="formSubmit">
-                <h2 v-html="greetingText"/>
+                <h2 v-html="greetingText" />
                 <div
                     v-if="network && (network.last_error || network.state_error)"
                     class="kiwi-welcome-simple-error"
@@ -18,32 +18,32 @@
 
                 <input-text
                     v-if="showNick"
-                    :label="$t('nick')"
                     v-model="nick"
+                    :label="$t('nick')"
                     class="kiwi-welcome-simple-nick"
                 />
                 <label
                     v-if="showPass && toggablePass"
                     class="kiwi-welcome-simple-have-password"
                 >
-                    <input v-model="show_password_box" type="checkbox" >
+                    <input v-model="show_password_box" type="checkbox">
                     <span> {{ $t('password_have') }} </span>
                 </label>
 
                 <input-text
-                    v-focus
                     v-if="showPass && (show_password_box || !toggablePass)"
+                    v-model="password"
+                    v-focus
                     :label="$t('password')"
                     :show-plain-text="true"
-                    v-model="password"
                     type="password"
                     class="kiwi-welcome-simple-password u-input-text--reveal-value"
                 />
 
                 <input-text
                     v-if="showChannel"
-                    :label="$t('channel')"
                     v-model="channel"
+                    :label="$t('channel')"
                     class="kiwi-welcome-simple-channel"
                 />
 
@@ -61,8 +61,8 @@
                 />
             </form>
         </template>
-        <template v-slot:connection v-else-if="network.state !== 'connected'">
-            <i class="fa fa-spin fa-spinner" aria-hidden="true"/>
+        <template v-else-if="network.state !== 'connected'" v-slot:connection>
+            <i class="fa fa-spin fa-spinner" aria-hidden="true" />
         </template>
     </startup-layout>
 </template>

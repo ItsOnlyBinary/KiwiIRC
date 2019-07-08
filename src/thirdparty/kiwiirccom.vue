@@ -8,7 +8,7 @@
         <button class="u-button u-button-primary" @click="addNetwork">
             {{ $t('personal_add') }}
         </button>
-        <br />
+        <br>
 
         <a
             v-if="networks.length > 0"

@@ -50,11 +50,11 @@ export default Vue.extend({
 
             if (section === 'settings' && isChannel) {
                 return 'settings';
-            } else if (section === 'user' && this.sidebarUser && isChannel) {
+            } if (section === 'user' && this.sidebarUser && isChannel) {
                 return 'user';
-            } else if (section === 'nicklist' && isChannel) {
+            } if (section === 'nicklist' && isChannel) {
                 return 'nicklist';
-            } else if (section === 'about') {
+            } if (section === 'about') {
                 return 'about';
             }
 

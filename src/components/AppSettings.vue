@@ -1,15 +1,13 @@
 <template>
     <div class="kiwi-appsettings">
-
         <div class="kiwi-appsettings-title" @click="closeSettings">
             <span>{{ $t('close') }}</span>
-            <i class="fa fa-times" aria-hidden="true"/>
+            <i class="fa fa-times" aria-hidden="true" />
         </div>
 
         <form class="u-form">
             <tabbed-view ref="tabs" class="kiwi-appsettings-tab-container">
                 <tabbed-tab :header="$t('settings_general')" :focus="true" name="general">
-
                     <div class="kiwi-appsettings-block">
                         <h3>{{ $t('settings_general') }}</h3>
                         <div class="kiwi-appsettings-section kiwi-appsettings-general">
@@ -19,7 +17,7 @@
                                     <option value="">
                                         Auto
                                     </option>
-                                    <option v-for="l in localesList" :value="l[0]" :key="l[0]">
+                                    <option v-for="l in localesList" :key="l[0]" :value="l[0]">
                                         {{ l[1] }}
                                     </option>
                                 </select>
@@ -31,13 +29,13 @@
                                     class="kiwi-appsettings-theme-reload"
                                     @click="refreshTheme"
                                 >
-                                    <i class="fa fa-refresh" aria-hidden="true"/>
+                                    <i class="fa fa-refresh" aria-hidden="true" />
                                 </a>
                                 <select v-model="theme">
                                     <option
                                         v-for="t in settings.themes"
-                                        :value="t.name"
                                         :key="t.name"
+                                        :value="t.name"
                                     >
                                         {{ t.name }}
                                     </option>
@@ -49,11 +47,11 @@
                             </label>
                             <label class="u-checkbox-wrapper">
                                 <span>{{ $t('settings_show_autocomplete') }} </span>
-                                <input v-model="settingShowAutoComplete" type="checkbox" >
+                                <input v-model="settingShowAutoComplete" type="checkbox">
                             </label>
                             <label v-if="themeSupportsMonospace" class="u-checkbox-wrapper">
                                 <span>{{ $t('settings_use_monospace') }} </span>
-                                <input v-model="settingUseMonospace" type="checkbox" >
+                                <input v-model="settingUseMonospace" type="checkbox">
                             </label>
                             <div
                                 v-if="canRegisterProtocolHandler"
@@ -82,19 +80,19 @@
                             </label>
                             <label class="u-checkbox-wrapper">
                                 <span>{{ $t('settings_timestamps') }} </span>
-                                <input v-model="settingBufferShowTimestamps" type="checkbox" >
+                                <input v-model="settingBufferShowTimestamps" type="checkbox">
                             </label>
                             <label class="u-checkbox-wrapper">
                                 <span>{{ $t('settings_24hour_timestamps') }} </span>
-                                <input v-model="timestamps_24h" type="checkbox" >
+                                <input v-model="timestamps_24h" type="checkbox">
                             </label>
                             <label class="u-checkbox-wrapper">
                                 <span>{{ $t('settings_emoticons') }} </span>
-                                <input v-model="settingBufferShowEmoticons" type="checkbox" >
+                                <input v-model="settingBufferShowEmoticons" type="checkbox">
                             </label>
                             <label class="u-checkbox-wrapper">
                                 <span>{{ $t('settings_block_private') }} </span>
-                                <input v-model="settingBufferBlockPms" type="checkbox" >
+                                <input v-model="settingBufferBlockPms" type="checkbox">
                             </label>
                             <label
                                 class="kiwi-appsettings-full kiwi-appsettings-setting-scrollback"
@@ -108,11 +106,11 @@
                             </label>
                             <label class="u-checkbox-wrapper">
                                 <span>{{ $t('settings_formatting') }} </span>
-                                <input v-model="settingBufferExtraFormatting" type="checkbox" >
+                                <input v-model="settingBufferExtraFormatting" type="checkbox">
                             </label>
                             <label class="u-checkbox-wrapper">
                                 <span>{{ $t('settings_nick_colouring') }} </span>
-                                <input v-model="settingBufferColourNicknames" type="checkbox" >
+                                <input v-model="settingBufferColourNicknames" type="checkbox">
                             </label>
                             <label class="u-checkbox-wrapper">
                                 <span>{{ $t('settings_share_typing') }} </span>
@@ -126,15 +124,15 @@
                         <div class="kiwi-appsettings-section kiwi-appsettings-notifications">
                             <label class="kiwi-appsettings-setting-showjoinpart u-checkbox-wrapper">
                                 <span>{{ $t('settings_show_joinpart') }} </span>
-                                <input v-model="settingBufferTrafficAsActivity" type="checkbox" >
+                                <input v-model="settingBufferTrafficAsActivity" type="checkbox">
                             </label>
                             <label class="u-checkbox-wrapper">
                                 <span>{{ $t('settings_mute_sound') }} </span>
-                                <input v-model="settingBufferMuteSound" type="checkbox" >
+                                <input v-model="settingBufferMuteSound" type="checkbox">
                             </label>
                             <label class="kiwi-appsettings-full">
                                 <span>{{ $t('settings_highlight') }} </span>
-                                <input v-model="settingHighlights" type="text" class="u-input" >
+                                <input v-model="settingHighlights" type="text" class="u-input">
                             </label>
                         </div>
                     </div>
@@ -144,7 +142,7 @@
                         <div class="kiwi-appsettings-section kiwi-appsettings-operator-tools">
                             <label>
                                 <span>{{ $t('settings_default_ban_mask') }} </span>
-                                <input v-model="settingDefaultBanMask" class="u-input" >
+                                <input v-model="settingDefaultBanMask" class="u-input">
                             </label>
                             <label>
                                 <span>{{ $t('settings_default_kick_reason') }}</span>
@@ -153,7 +151,8 @@
                         </div>
                     </div>
                     <div v-if="!state.setting('hide_advanced') && !settingAdvancedEnable"
-                         class="kiwi-appsettings-block">
+                         class="kiwi-appsettings-block"
+                    >
                         <h3>{{ $t('settings_advanced_title') }}</h3>
                         <div class="kiwi-appsettings-section kiwi-appsettings-advanced-enable">
                             <div>
@@ -175,7 +174,7 @@
                     <div class="kiwi-appsettings-block kiwi-appsettings-block-aliases">
                         <h3>{{ $t('settings_aliases') }}</h3>
                         <div class="kiwi-appsettings-section kiwi-appsettings-aliases">
-                            <settings-aliases/>
+                            <settings-aliases />
                         </div>
                     </div>
                 </tabbed-tab>
@@ -183,10 +182,11 @@
                 <tabbed-tab
                     v-if="settingAdvancedEnable"
                     :header="$t('settings_advanced')"
-                    name="advanced">
+                    name="advanced"
+                >
                     <div class="kiwi-appsettings-block kiwi-appsettings-block-advanced">
                         <div class="kiwi-appsettings-section kiwi-appsettings-advanced">
-                            <settings-advanced/>
+                            <settings-advanced />
                         </div>
                     </div>
                 </tabbed-tab>
@@ -195,8 +195,9 @@
                     v-for="item in pluginUiElements"
                     :key="item.id"
                     :header="item.title"
-                    :name="item.title">
-                    <div :is="item.component" v-bind="item.props"/>
+                    :name="item.title"
+                >
+                    <div :is="item.component" v-bind="item.props" />
                 </tabbed-tab>
             </tabbed-view>
         </form>

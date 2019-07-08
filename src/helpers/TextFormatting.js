@@ -2,11 +2,11 @@
 
 /** @module */
 
-import state from '@/libs/state';
-import ThemeManager from '@/libs/ThemeManager';
 import _ from 'lodash';
 import i18next from 'i18next';
 import * as ipRegex from 'ip-regex';
+import ThemeManager from '@/libs/ThemeManager';
+import state from '@/libs/state';
 import * as Colours from './Colours';
 import { md5 } from './Md5';
 

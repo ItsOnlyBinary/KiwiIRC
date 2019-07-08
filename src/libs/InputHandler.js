@@ -1,8 +1,8 @@
 'kiwi public';
 
+import _ from 'lodash';
 import * as TextFormatting from '@/helpers/TextFormatting';
 import * as Misc from '@/helpers/Misc';
-import _ from 'lodash';
 import AliasRewriter from './AliasRewriter';
 
 // Map of commandName=commandHandlerFn
