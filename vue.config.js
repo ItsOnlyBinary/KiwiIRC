@@ -40,6 +40,25 @@ module.exports = {
             return args;
         });
 
+        // add builds/ to resolveLoader for exports-loader
+        config.resolveLoader.modules.add(path.resolve(__dirname, 'build/'));
+
+        // // add exports-loader for GobalApi
+        const vueRule = config.module.rule('vue');
+        const vueCacheOptions = vueRule.uses.get('cache-loader').get('options');
+        const vueOptions = vueRule.uses.get('vue-loader').get('options');
+        vueRule.uses.clear();
+        vueRule.use('cache-loader').loader('cache-loader').options(vueCacheOptions);
+        vueRule.use('exports-loader').loader('exports-loader');
+        vueRule.use('vue-loader').loader('vue-loader').options(vueOptions);
+
+        const jsRule = config.module.rule('js');
+        const jsCacheOptions = jsRule.uses.get('cache-loader').get('options');
+        jsRule.uses.clear();
+        jsRule.use('cache-loader').loader('cache-loader').options(jsCacheOptions);
+        jsRule.use('exports-loader').loader('exports-loader');
+        jsRule.use('babel-loader').loader('babel-loader');
+
         config.module
             .rule('html')
             .test(/\.html$/)
