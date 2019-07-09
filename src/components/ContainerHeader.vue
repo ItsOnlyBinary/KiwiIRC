@@ -480,7 +480,7 @@ export default {
         border-bottom: none;
     }
 
-    .kiwi-header {
+    .kiwi-container .kiwi-header {
         margin-right: 0;
         overflow: visible;
         height: auto;
