@@ -463,7 +463,7 @@ body {
     }
 
     .kiwi-statebrowser {
-        left: -200px;
+        left: -220px;
     }
 
     .kiwi-wrap--statebrowser-drawopen .kiwi-statebrowser {
