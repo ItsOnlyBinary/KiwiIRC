@@ -39,6 +39,7 @@ module.exports = {
         'import/no-unresolved': 0,
         'import/prefer-default-export': 0,
         'indent': ['error', 4],
+        'max-classes-per-file': 0,
         'no-continue': 0,
         'no-multi-assign': 0,
         'no-param-reassign': ['error', { 'props': false }],
