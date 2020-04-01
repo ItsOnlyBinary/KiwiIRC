@@ -2,6 +2,8 @@ const path = require('path');
 
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
+const pkg = require('./package.json');
+
 module.exports = {
     publicPath: '',
     assetsDir: 'static/',
@@ -39,6 +41,14 @@ module.exports = {
             args[0].template = path.join(__dirname, 'index.html');
             return args;
         });
+
+        config.plugin('define').tap((args) => {
+          args[0] = {
+             ...args[0],
+             "__VERSION__": JSON.stringify(pkg.version),
+          }
+          return args
+       })
 
         // add builds/ to resolveLoader for exports-loader
         config.resolveLoader.modules.add(path.resolve(__dirname, 'build/'));
