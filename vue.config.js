@@ -1,8 +1,32 @@
 const path = require('path');
-
+const fs = require('fs');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-
 const pkg = require('./package.json');
+
+let webpackPlugins = [
+    new CopyWebpackPlugin([
+        {
+            from: path.join(__dirname, 'static/'),
+            to: path.join(__dirname, 'dist/static/'),
+            toType: 'dir',
+            ignore: ['.*', 'config.local.json'],
+        },
+    ]),
+];
+
+if (process.env.NODE_ENV === 'development') {
+    // override config.json with config.local.json if it exists
+    let localConfig = path.resolve(__dirname, './static/config.local.json');
+    if (fs.existsSync(localConfig)) {
+        webpackPlugins.push(new CopyWebpackPlugin([
+            {
+                from: localConfig,
+                to: path.join(__dirname, 'dist/static/config.json'),
+                force: true,
+            },
+        ]));
+    }
+}
 
 module.exports = {
     publicPath: '',
@@ -18,23 +42,14 @@ module.exports = {
             },
         },
         performance: {
-            maxEntrypointSize: 1400000,
+            maxEntrypointSize: 1500000,
             maxAssetSize: 1000000,
         },
         optimization: {
             usedExports: false,
             concatenateModules: false,
         },
-        plugins: [
-            new CopyWebpackPlugin([
-                {
-                    from: path.join(__dirname, 'static/'),
-                    to: path.join(__dirname, 'dist/static/'),
-                    toType: 'dir',
-                    ignore: ['index.html', '.DS_Store'],
-                },
-            ]),
-        ],
+        plugins: webpackPlugins,
     },
     chainWebpack: (config) => {
         config.plugin('html').tap((args) => {
@@ -43,12 +58,12 @@ module.exports = {
         });
 
         config.plugin('define').tap((args) => {
-          args[0] = {
-             ...args[0],
-             "__VERSION__": JSON.stringify(pkg.version),
-          }
-          return args
-       })
+            args[0] = {
+                ...args[0],
+                __VERSION__: JSON.stringify(pkg.version),
+            };
+            return args;
+        });
 
         // add builds/ to resolveLoader for exports-loader
         config.resolveLoader.modules.add(path.resolve(__dirname, 'build/'));
@@ -80,11 +95,11 @@ module.exports = {
 
         // IE11 required by the webpack runtime for async import().
         // babel polyfills don't help us here
-        config.entry('app').add('core-js/fn/promise');
+        config.entry('app').add('core-js/features/promise');
 
         // IE11 play nice with vue-virtual-scroller
-        config.entry('app').add('core-js/fn/array/virtual/find-index');
-        config.entry('app').add('core-js/fn/array/virtual/includes');
+        config.entry('app').add('core-js/features/array/virtual/find-index');
+        config.entry('app').add('core-js/features/array/virtual/includes');
 
         // Kiwiirc main entry point
         config.entry('app').add('./src/main.js');
