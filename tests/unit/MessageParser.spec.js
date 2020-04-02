@@ -1,7 +1,7 @@
 import parseMessage from '@/libs/MessageParser';
 
-describe('MessageParser.js', function() {
-    it('should return valid channel blocks', function() {
+describe('MessageParser.js', () => {
+    it('should return valid channel blocks', () => {
         let tests = [
             ['#channel', '#channel'],
             ['#channel;', '#channel'],
@@ -17,14 +17,14 @@ describe('MessageParser.js', function() {
 
         tests.forEach((c) => {
             let blocks = parseMessage(c[0]);
-            let channelBlocks = blocks.filter(b => b.type === 'channel');
+            let channelBlocks = blocks.filter((b) => b.type === 'channel');
 
             expect(channelBlocks.length).toEqual(1);
             expect(channelBlocks[0].meta.channel).toEqual(c[1]);
         });
     });
 
-    it('should return valid url blocks', function() {
+    it('should return valid url blocks', () => {
         let tests = [
             ['www.example.com', 'http://www.example.com'],
             ['http://example.com'],
@@ -44,7 +44,7 @@ describe('MessageParser.js', function() {
 
         tests.forEach((c) => {
             let blocks = parseMessage(c[0]);
-            let urlBlocks = blocks.filter(b => b.type === 'url');
+            let urlBlocks = blocks.filter((b) => b.type === 'url');
             let compare = c.length >= 2 ? c[1] : c[0];
 
             expect(urlBlocks.length).toEqual(1);
@@ -57,17 +57,17 @@ describe('MessageParser.js', function() {
         });
     });
 
-    it('should reject invalid urls', function() {
+    it('should reject invalid urls', () => {
         let tests = ['test', 'example.com', 'test:8080', '127.0.0.1/test.html'];
 
         tests.forEach((c) => {
             let blocks = parseMessage(c[0]);
-            let urlBlocks = blocks.filter(b => b.type === 'url');
+            let urlBlocks = blocks.filter((b) => b.type === 'url');
             expect(urlBlocks.length).toEqual(0);
         });
     });
 
-    it('should return valid user blocks', function() {
+    it('should return valid user blocks', () => {
         // mock users list
         let users = {
             testnick1: { nick: 'TestNick1', username: 'testnick1', colour: '#a1fc5d' },
@@ -86,7 +86,7 @@ describe('MessageParser.js', function() {
 
         tests.forEach((c) => {
             let blocks = parseMessage(c[0], {}, users);
-            let userBlocks = blocks.filter(b => b.type === 'user');
+            let userBlocks = blocks.filter((b) => b.type === 'user');
             let compare = c.length === 2 ? c[1] : c[0];
 
             expect(userBlocks.length).toEqual(1);
@@ -95,7 +95,7 @@ describe('MessageParser.js', function() {
         });
     });
 
-    it('should reject invalid users', function() {
+    it('should reject invalid users', () => {
         // mock users list
         let users = {
             testnick1: { nick: 'TestNick1', username: 'testnick1' },
@@ -105,7 +105,7 @@ describe('MessageParser.js', function() {
 
         tests.forEach((c) => {
             let blocks = parseMessage(c[0], {}, users);
-            let userBlocks = blocks.filter(b => b.type === 'user');
+            let userBlocks = blocks.filter((b) => b.type === 'user');
 
             expect(userBlocks.length).toEqual(0);
         });

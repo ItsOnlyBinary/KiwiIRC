@@ -1,7 +1,7 @@
 import * as Misc from '@/helpers/Misc';
 
-describe('Misc.js', function() {
-    it('should find mentions of nickname in text', function() {
+describe('Misc.js', () => {
+    it('should find mentions of nickname in text', () => {
         let tests = [
             ['foo', 'foo', true], // on its own
             ['Foo', 'foo', true], // different case

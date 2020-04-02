@@ -8,8 +8,8 @@ module.exports = {
         sourceType: 'module'
     },
     extends: [
-        'airbnb-base',
         'plugin:vue/recommended',
+        '@vue/airbnb',
         'standard'
     ],
     env: {
@@ -21,7 +21,7 @@ module.exports = {
         'vue',
     ],
     // add your custom rules here
-    'rules': {
+    rules: {
         'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
         'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
         'rulesdir/class-name-prefix': 'warn',
@@ -60,5 +60,14 @@ module.exports = {
         'vue/no-v-html': 0,
         'vue/require-prop-types': 0,
         'vue/require-default-prop': 0,
-    }
+    },
+    overrides: [{
+        files: [
+            '**/__tests__/*.{j,t}s?(x)',
+            '**/tests/unit/**/*.spec.{j,t}s?(x)',
+        ],
+        env: {
+            jest: true,
+        },
+    }],
 };

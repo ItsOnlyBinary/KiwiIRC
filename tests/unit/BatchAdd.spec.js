@@ -1,18 +1,18 @@
 import batchedAdd from '@/libs/batchedAdd';
 
-describe('batchedAdd.vue', function() {
-    it('should return a batching function', function() {
+describe('batchedAdd.vue', () => {
+    it('should return a batching function', () => {
         let batch = batchedAdd();
         expect(batch).toBeInstanceOf(Function);
     });
 
-    it('should expose its queue', function() {
+    it('should expose its queue', () => {
         let batch = batchedAdd();
         expect(batch.queue).toBeInstanceOf(Function);
         expect(batch.queue()).toEqual([]);
     });
 
-    it('should process three items without a batch', function(done) {
+    it('should process three items without a batch', (done) => {
         let itemCount = 0;
         let singleItem = () => {
             itemCount++;
@@ -30,7 +30,7 @@ describe('batchedAdd.vue', function() {
         batch('item');
     });
 
-    it('should process a batched item after three single items', function(done) {
+    it('should process a batched item after three single items', (done) => {
         let singleCount = 0;
         let singleItem = () => {
             singleCount++;
@@ -50,9 +50,9 @@ describe('batchedAdd.vue', function() {
         batch('item');
     });
 
-    it('should process 3 items in a batch', function(done) {
+    it('should process 3 items in a batch', (done) => {
         let singleItem = () => {};
-        let batchItems = items => {
+        let batchItems = (items) => {
             if (items.length !== 3) {
                 done(new Error('Expected 3 items in a batch'));
             } else {
@@ -69,7 +69,7 @@ describe('batchedAdd.vue', function() {
         batch('item');
     });
 
-    it('should process a single item after a batch has finished', function(done) {
+    it('should process a single item after a batch has finished', (done) => {
         let singleCount = 0;
         let batchCount = 0;
         let singleItem = () => {
@@ -78,7 +78,7 @@ describe('batchedAdd.vue', function() {
             }
             singleCount++;
         };
-        let batchItems = items => {
+        let batchItems = (items) => {
             if (batchCount > 0) {
                 done(new Error('Processing a batch more than once'));
             }
@@ -99,7 +99,7 @@ describe('batchedAdd.vue', function() {
         }, 1200);
     });
 
-    it('should process 4 single items', function(done) {
+    it('should process 4 single items', (done) => {
         let singleCount = 0;
         let singleItem = () => {
             singleCount++;
@@ -107,7 +107,7 @@ describe('batchedAdd.vue', function() {
                 done();
             }
         };
-        let batchItems = items => {
+        let batchItems = (items) => {
             done(new Error('Items should not be batched'));
         };
 
