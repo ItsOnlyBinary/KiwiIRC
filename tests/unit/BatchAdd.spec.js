@@ -3,13 +3,13 @@ import batchedAdd from '@/libs/batchedAdd';
 describe('batchedAdd.vue', function() {
     it('should return a batching function', function() {
         let batch = batchedAdd();
-        expect(batch).to.be.a('function');
+        expect(batch).toBeInstanceOf(Function);
     });
 
     it('should expose its queue', function() {
         let batch = batchedAdd();
-        expect(batch.queue).to.be.a('function');
-        expect(batch.queue()).to.eql([]);
+        expect(batch.queue).toBeInstanceOf(Function);
+        expect(batch.queue()).toEqual([]);
     });
 
     it('should process three items without a batch', function(done) {
@@ -100,7 +100,6 @@ describe('batchedAdd.vue', function() {
     });
 
     it('should process 4 single items', function(done) {
-        this.timeout(3000);
         let singleCount = 0;
         let singleItem = () => {
             singleCount++;
@@ -119,5 +118,5 @@ describe('batchedAdd.vue', function() {
         setTimeout(() => {
             batch('item');
         }, 1200);
-    });
+    }, 3000);
 });

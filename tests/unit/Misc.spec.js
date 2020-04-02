@@ -18,7 +18,7 @@ describe('Misc.js', function() {
 
         tests.forEach((c) => {
             let doesMention = Misc.mentionsNick(c[0], c[1]);
-            expect(doesMention).to.equal(c[2]);
+            expect(doesMention).toEqual(c[2]);
         });
     });
 });

@@ -19,8 +19,8 @@ describe('MessageParser.js', function() {
             let blocks = parseMessage(c[0]);
             let channelBlocks = blocks.filter(b => b.type === 'channel');
 
-            expect(channelBlocks.length).to.equal(1);
-            expect(channelBlocks[0].meta.channel).to.equal(c[1]);
+            expect(channelBlocks.length).toEqual(1);
+            expect(channelBlocks[0].meta.channel).toEqual(c[1]);
         });
     });
 
@@ -47,12 +47,12 @@ describe('MessageParser.js', function() {
             let urlBlocks = blocks.filter(b => b.type === 'url');
             let compare = c.length >= 2 ? c[1] : c[0];
 
-            expect(urlBlocks.length).to.equal(1);
-            expect(urlBlocks[0].meta.url).to.equal(compare);
+            expect(urlBlocks.length).toEqual(1);
+            expect(urlBlocks[0].meta.url).toEqual(compare);
             // check prefix and suffix
             if (c.length === 4) {
-                expect(blocks[0].content).to.equal(c[2]);
-                expect(blocks[2].content).to.equal(c[3]);
+                expect(blocks[0].content).toEqual(c[2]);
+                expect(blocks[2].content).toEqual(c[3]);
             }
         });
     });
@@ -63,7 +63,7 @@ describe('MessageParser.js', function() {
         tests.forEach((c) => {
             let blocks = parseMessage(c[0]);
             let urlBlocks = blocks.filter(b => b.type === 'url');
-            expect(urlBlocks.length).to.equal(0);
+            expect(urlBlocks.length).toEqual(0);
         });
     });
 
@@ -89,9 +89,9 @@ describe('MessageParser.js', function() {
             let userBlocks = blocks.filter(b => b.type === 'user');
             let compare = c.length === 2 ? c[1] : c[0];
 
-            expect(userBlocks.length).to.equal(1);
-            expect(userBlocks[0].meta.user).to.equal(compare);
-            expect(userBlocks[0].meta.colour).to.equal(users[compare.toLowerCase()].colour);
+            expect(userBlocks.length).toEqual(1);
+            expect(userBlocks[0].meta.user).toEqual(compare);
+            expect(userBlocks[0].meta.colour).toEqual(users[compare.toLowerCase()].colour);
         });
     });
 
@@ -107,7 +107,7 @@ describe('MessageParser.js', function() {
             let blocks = parseMessage(c[0], {}, users);
             let userBlocks = blocks.filter(b => b.type === 'user');
 
-            expect(userBlocks.length).to.equal(0);
+            expect(userBlocks.length).toEqual(0);
         });
     });
 });
