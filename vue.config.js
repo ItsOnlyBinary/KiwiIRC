@@ -34,6 +34,7 @@ module.exports = {
     lintOnSave: false,
     runtimeCompiler: true,
     transpileDependencies: ['ip-regex', 'isomorphic-textencoder'],
+    productionSourceMap: process.argv.indexOf('--nomap') === -1,
     configureWebpack: {
         resolve: {
             extensions: ['.js', '.vue', '.json'],
@@ -105,23 +106,5 @@ module.exports = {
         config.entry('app').add('./src/main.js');
     },
     pluginOptions: {
-        karma: {
-            karmaConfig: {
-                browsers: ['PhantomJS'],
-                frameworks: ['mocha', 'sinon-chai'], //
-                reporters: ['spec', 'coverage'],
-                files: ['tests/unit/index.js'],
-                preprocessors: {
-                    'tests/unit/index.js': ['webpack', 'sourcemap'],
-                },
-                coverageReporter: {
-                    dir: 'tests/unit/coverage',
-                    reporters: [
-                        { type: 'lcov', subdir: 'tests/unit/coverage/' },
-                        { type: 'text-summary' },
-                    ],
-                },
-            },
-        },
     },
 };
