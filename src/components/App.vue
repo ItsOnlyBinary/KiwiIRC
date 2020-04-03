@@ -41,7 +41,11 @@
                             />
                         </template>
                     </container>
-                    <control-input v-if="buffer.show_input" :container="networks" :buffer="buffer"/>
+                    <control-input
+                        v-if="buffer.show_input"
+                        :container="networks"
+                        :buffer="buffer"
+                    />
                 </template>
                 <component
                     v-else-if="!activeComponent"
@@ -57,7 +61,7 @@
 <script>
 'kiwi public';
 
-import 'font-awesome-webpack';
+import 'font-awesome-webpack-4';
 import cssVarsPonyfill from 'css-vars-ponyfill';
 import '@/res/globalStyle.css';
 import Tinycon from 'tinycon';
@@ -478,7 +482,7 @@ body {
     }
 
     .kiwi-statebrowser {
-        left: -200px;
+        left: -220px;
     }
 
     .kiwi-wrap--statebrowser-drawopen .kiwi-statebrowser {

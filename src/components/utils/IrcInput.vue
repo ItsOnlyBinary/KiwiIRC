@@ -24,7 +24,7 @@
 'kiwi public';
 
 import _ from 'lodash';
-import htmlparser from 'htmlparser2';
+import { Parser } from 'htmlparser2';
 import * as Colours from '@/helpers/Colours';
 
 let Vue = require('vue');
@@ -160,7 +160,7 @@ export default Vue.component('irc-input', {
                 return toggles[toggles.length - 1];
             }
 
-            let parser = new htmlparser.Parser({
+            let parser = new Parser({
                 onopentag: (name, attribs) => {
                     toggles.push('');
                     let codeLookup = '';
